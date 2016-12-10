@@ -7,6 +7,7 @@ public class PlayingFieldController : MonoBehaviour
     private GameObject startField;
     private GameObject endField;
 
+
     public enum DIRECTION
     {
         xplus, xminus, zplus, zminus
