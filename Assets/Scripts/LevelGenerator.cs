@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    public GameObject fieldPrototype;
-    public GameObject wallPrototype;
     public GameObject playingField;
 
     public float xSize = 5;

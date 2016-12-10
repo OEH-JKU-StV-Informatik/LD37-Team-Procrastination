@@ -69,9 +69,9 @@ public class PlayingFieldController : MonoBehaviour
         return false;
     }
 
-    internal GameObject placeFloor(Vector3 pos)
+    internal GameObject placeFloor(Vector3 position)
     {
-        return Instantiate(fieldPrototype, pos, Quaternion.identity, gameObject.transform);
+        return Instantiate(fieldPrototype, position, Quaternion.identity, gameObject.transform);
     }
 
     public GameObject placeWall(Vector3 position, Direction direction)
