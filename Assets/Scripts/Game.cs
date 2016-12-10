@@ -26,10 +26,33 @@ public class Game : MonoBehaviour
         enemy.transform.position = playingField.getStartPosition() + Vector3.up * 0.1f;
         enemy.transform.rotation = Quaternion.identity;
         enemy.gameObject.SetActive(true);
+
+        foreach (CornerHighlightController corner in FindObjectsOfType<CornerHighlightController>())
+        {
+            foreach (Collider collider in corner.GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = false;
+            }
+            foreach (Renderer renderer in corner.GetComponentsInChildren<Renderer>())
+            {
+                renderer.enabled = false;
+            }
+        }
     }
 
     public void StopGame()
     {
         enemy.gameObject.SetActive(false);
+        foreach (CornerHighlightController corner in FindObjectsOfType<CornerHighlightController>())
+        {
+            foreach (Collider collider in corner.GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = true;
+            }
+            foreach (Renderer renderer in corner.GetComponentsInChildren<Renderer>())
+            {
+                renderer.enabled = true;
+            }
+        }
     }
 }
