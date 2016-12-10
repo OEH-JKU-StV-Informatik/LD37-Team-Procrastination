@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283f1438ee985749855686fe5a28ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultTextDisplayTime: 5
+  defaultTextDisplayTime: 2
   errorTextField: {fileID: 457092943}
 --- !u!114 &457092943
 MonoBehaviour:
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.9044118, g: 0.14630188, b: 0.14630188, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -448,7 +448,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Error Text
 --- !u!222 &457092944
 CanvasRenderer:
   m_ObjectHideFlags: 0
