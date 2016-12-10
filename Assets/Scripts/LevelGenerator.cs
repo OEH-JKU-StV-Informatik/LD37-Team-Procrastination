@@ -17,11 +17,32 @@ public class LevelGenerator : MonoBehaviour
             for (int z = 0; z < zSize; z++)
             {
                 var newField = playingField.GetComponent<PlayingFieldController>().placeFloor(new Vector3(x, 0, z));
-                if (x == 1 && z == 1)
+                // --Outer walls--
+                if (x == 0)
+                {
+                    playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(x - 1, 0, z), PlayingFieldController.Direction.xplus);
+                }
+                if (x == xSize - 1)
+                {
+                    playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(x, 0, z), PlayingFieldController.Direction.xplus);
+                }
+                if (z == 0)
+                {
+                    playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(x, 0, z - 1), PlayingFieldController.Direction.zplus);
+                }
+                if (z == zSize - 1)
+                {
+                    playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(x, 0, z), PlayingFieldController.Direction.zplus);
+                }
+
+
+                // ---------------
+
+                if (x == 0 && z == 0)
                 {
                     playingField.GetComponent<PlayingFieldController>().setStartField(newField);
                 }
-                if (x == 5 && z == 5)
+                if (x == 4 && z == 4)
                 {
                     playingField.GetComponent<PlayingFieldController>().setEndField(newField);
                 }
@@ -31,5 +52,7 @@ public class LevelGenerator : MonoBehaviour
         playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(0, 0, 0), PlayingFieldController.Direction.zplus);
         playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.xplus);
         playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
+
+        FindObjectOfType<AstarPath>().Scan();
     }
 }

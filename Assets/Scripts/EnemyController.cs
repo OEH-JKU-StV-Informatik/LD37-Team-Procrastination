@@ -10,17 +10,16 @@ public class EnemyController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (playingFieldController.canGoXPlus())
-        //{
-        //    // goX+
-        //}
-        //...
+        if (GetComponent<AIPath>().target == null && playingFieldController.getEndField() != null)
+        {
+            GetComponent<AIPath>().target =playingFieldController.getEndField().transform;
+        }
     }
 
 
