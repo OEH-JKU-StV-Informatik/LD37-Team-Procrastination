@@ -14,6 +14,7 @@ public class CornerHighlightController : MonoBehaviour
     public Material invalid;
 
     private bool dragging = false;
+    private bool validWall = false;
     private static CornerHighlightController selected;
     private float animationDirection = 1;
     private float animationSize = 1;
@@ -30,7 +31,11 @@ public class CornerHighlightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // onmousemove -> move wall
+        if (!newWall)
+        {
+            resetSelections();
+        }
+
         if (dragging)
         {
             RaycastHit hitInfo = new RaycastHit();
@@ -41,17 +46,13 @@ public class CornerHighlightController : MonoBehaviour
                 newWall.transform.localScale = new Vector3(1, 1, (hitInfo.point - transform.position).magnitude);
             }
 
-            if (this != selected)
+            if (selected && this != selected)
             {
-                if ((selected.transform.position - transform.position).magnitude <= 1.1)
-                {
-                    selected.SetMaterial(valid);
-                }
-                else
-                {
-                    selected.SetMaterial(invalid);
-                }
-
+                validWall = (selected.transform.position - transform.position).magnitude <= 1.1;
+                selected.SetMaterial(validWall ? valid : invalid);
+            } else
+            {
+                validWall = false;
             }
 
         }
@@ -78,13 +79,14 @@ public class CornerHighlightController : MonoBehaviour
     {
         if (dragging)
         {
-            if (selected)
+            if (selected != this && validWall)
             {
                 newWall.transform.LookAt(selected.transform.position);
                 newWall.transform.localScale = Vector3.one;
-                selected.SetMaterial(standard);
-                // fix wall
-                // check if path possible
+                
+                // recalculate pathing
+                FindObjectOfType<AstarPath>().Scan();
+                //FindObjectOfType<AstarPath>().
             }
             else
             {
@@ -92,10 +94,7 @@ public class CornerHighlightController : MonoBehaviour
             }
         }
 
-
-        dragging = false;
-        selected = null;
-        transform.localScale = Vector3.one;
+        resetSelections();
     }
 
     void OnMouseDown()
@@ -139,5 +138,17 @@ public class CornerHighlightController : MonoBehaviour
         {
             renderer.material = material;
         }
+    }
+
+    private void resetSelections()
+    {
+        if (selected)
+        {
+            selected.SetMaterial(standard);
+        }
+        selected = null;
+        dragging = false;
+        transform.localScale = Vector3.one;
+        validWall = false;
     }
 }
