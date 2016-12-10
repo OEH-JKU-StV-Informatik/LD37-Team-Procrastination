@@ -7,6 +7,7 @@ public class PlayingFieldController : MonoBehaviour
     private GameObject startField;
     private GameObject endField;
 
+    private float stepSize = 1.0f;
 
     public enum DIRECTION
     {
@@ -34,6 +35,11 @@ public class PlayingFieldController : MonoBehaviour
     public Vector3 getStartPosition()
     {
         return startField.transform.position;
+    }
+
+    public float getStepSize()
+    {
+        return stepSize;
     }
 
     public void setEndField(GameObject endField)
