@@ -655,19 +655,7 @@ Prefab:
       propertyPath: playingFieldController
       value: 
       objectReference: {fileID: 1804789760}
-    - target: {fileID: 114469847274788830, guid: 36fa023ed6234874493c8c6d4ff893a8,
-        type: 2}
-      propertyPath: slowdownDistance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114469847274788830, guid: 36fa023ed6234874493c8c6d4ff893a8,
-        type: 2}
-      propertyPath: pickNextWaypointDist
-      value: 0.3
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114660588246521980, guid: 36fa023ed6234874493c8c6d4ff893a8, type: 2}
-    - {fileID: 114091327667535192, guid: 36fa023ed6234874493c8c6d4ff893a8, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36fa023ed6234874493c8c6d4ff893a8, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &899607880 stripped
