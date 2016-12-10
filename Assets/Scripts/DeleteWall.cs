@@ -14,6 +14,7 @@ public class DeleteWall : MonoBehaviour {
         if (Input.GetMouseButtonDown(1))
         {
             this.Destroy();
+            FindObjectOfType<AstarPath>().Scan();
         }
     }
 }

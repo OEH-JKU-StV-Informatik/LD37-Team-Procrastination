@@ -24,5 +24,6 @@ public class ResetLevel : MonoBehaviour {
         {
             wall.Destroy();
         }
+        FindObjectOfType<AstarPath>().Scan();
     }
 }
