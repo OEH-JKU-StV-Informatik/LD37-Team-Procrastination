@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,23 +23,45 @@ public class Game : MonoBehaviour
             score += Time.deltaTime;
         }
 
+        updateIngameUI();
+    }
+
+    void Start()
+    {
+        initIngameUI();
+    }
+
+    private void updateIngameUI()
+    {
         scoreText.text = string.Format("{0:0.##}", score);
         scoreMaxSlider.value =
-           1 - (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude/
+           1 - (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude /
             maxDistance;
+    }
+
+    private void updateHighscore()
+    {
+        scoreMax = PlayerPrefs.GetFloat("Highscore");
+        scoreMaxText.text = string.Format("{0:0.##}", scoreMax);
+    }
+
+    private void initIngameUI()
+    {
+        score = 0.0f;
+        maxDistance = (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude;
+        updateHighscore();
+        updateIngameUI();
     }
 
     public void StartGame()
     {
         FindObjectOfType<AstarPath>().Scan();
 
-        score = 0.0f;
-        scoreMax = 1337;
-        maxDistance = (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude;
-
         enemy.transform.position = playingField.getStartPosition() + Vector3.up * 0.1f;
         enemy.transform.rotation = Quaternion.identity;
         enemy.gameObject.SetActive(true);
+
+        initIngameUI();
 
         foreach (CornerHighlightController corner in FindObjectsOfType<CornerHighlightController>())
         {
@@ -55,6 +78,12 @@ public class Game : MonoBehaviour
 
     public void StopGame()
     {
+        if (score > scoreMax)
+        {
+            PlayerPrefs.SetFloat("Highscore", score);
+            updateHighscore();
+        }
+
         enemy.gameObject.SetActive(false);
         foreach (CornerHighlightController corner in FindObjectsOfType<CornerHighlightController>())
         {
