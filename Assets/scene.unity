@@ -672,6 +672,7 @@ MonoBehaviour:
   playingField: {fileID: 1804789758}
   xSize: 5
   zSize: 5
+  startLevel: 2
 --- !u!114 &803011808
 MonoBehaviour:
   m_ObjectHideFlags: 0
