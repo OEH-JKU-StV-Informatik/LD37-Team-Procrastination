@@ -5,24 +5,21 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
 
-    public GameObject playingField;
+    public PlayingFieldController playingFieldController;
 
     // Use this for initialization
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        var playingFieldController = playingField.GetComponent<PlayingFieldController>();
-
-        //if (playingFieldController.canGoXPlus())
-        //{
-        //    // goX+
-        //}
-        //...
+        if (GetComponent<AIPath>().target == null && playingFieldController.getEndField() != null)
+        {
+            GetComponent<AIPath>().target =playingFieldController.getEndField().transform;
+        }
     }
 
 
