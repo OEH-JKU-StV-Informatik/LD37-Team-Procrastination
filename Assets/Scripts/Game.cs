@@ -30,6 +30,8 @@ public class Game : MonoBehaviour
 
     public void StartGame()
     {
+        FindObjectOfType<AstarPath>().Scan();
+
         score = 0.0f;
         scoreMax = 1337;
         maxDistance = (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude;
