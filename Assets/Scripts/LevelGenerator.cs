@@ -12,11 +12,13 @@ public class LevelGenerator : MonoBehaviour
     public int startLevel = 1;
 
     private PlayingFieldController playingFieldController;
+    private BuffController buffConftroller;
 
     // Use this for initialization
     void Start()
     {
         playingFieldController = playingField.GetComponent<PlayingFieldController>();
+        buffConftroller = gameObject.GetComponent<BuffController>();
         loadLevel(startLevel);
     }
 
@@ -34,7 +36,7 @@ public class LevelGenerator : MonoBehaviour
         generateBaseLevel();
 
         // Buff sample
-        playingFieldController.placeBuffTrigger(new Vector3(1, 0, 1), new SlowBuff());
+        buffConftroller.placeBuffTrigger(new Vector3(1, 0, 1), buffConftroller.slowBuffPrototype);
 
 
         switch (levelId)

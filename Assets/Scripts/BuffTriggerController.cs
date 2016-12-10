@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BuffTriggerController : MonoBehaviour
 {
-
-    public Buff buff;
+    public GameObject buff;
+    private float countDown = -1;
+    private EnemyController enemy;
 
     // Use this for initialization
     void Start()
@@ -16,16 +17,24 @@ public class BuffTriggerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (countDown > 0)
+        {
+            countDown -= Time.deltaTime;
+            if (countDown <= 0)
+            {
+                buff.GetComponent<Buff>().UnDoAction(enemy);
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        EnemyController enemy = other.gameObject.GetComponentInParent<EnemyController>();
+        enemy = other.gameObject.GetComponentInParent<EnemyController>();
         if (enemy)
         {
             GetComponent<Collider>().enabled = false;
-            buff.DoAction(enemy);
+            buff.GetComponent<Buff>().DoAction(enemy);
+            countDown = 4;
         }
     }
 }

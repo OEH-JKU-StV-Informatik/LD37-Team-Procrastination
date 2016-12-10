@@ -5,23 +5,23 @@ using Pathfinding;
 
 public class SlowBuff : MonoBehaviour, Buff
 {
-
     private float old;
-    private float countDown = 4;
+    public float slowFactor = 0.05f;
 
-    //void Update()
-    //{
-    //    countDown -= Time.deltaTime;
-    //    if (countDown < 0)
-    //    {
-
-    //    }
-    //}
+    void Update()
+    {
+    }
 
     public void DoAction(EnemyController enemyController)
     {
         Debug.Log("Slow Enemy!");
         old = enemyController.GetComponent<AIPath>().speed;
-        enemyController.GetComponent<AIPath>().speed = old * 0.1f;
+        enemyController.GetComponent<AIPath>().speed = old * slowFactor;
+    }
+
+    public void UnDoAction(EnemyController enemyController)
+    {
+        Debug.Log("Un-Slow Enemy!");
+        enemyController.GetComponent<AIPath>().speed = old;
     }
 }
