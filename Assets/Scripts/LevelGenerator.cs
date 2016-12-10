@@ -9,10 +9,54 @@ public class LevelGenerator : MonoBehaviour
     public float xSize = 5;
     public float zSize = 5;
 
+    public int startLevel = 1;
+
+    private PlayingFieldController playingFieldController;
+
     // Use this for initialization
     void Start()
     {
-        var playingFieldController = playingField.GetComponent<PlayingFieldController>();
+        playingFieldController = playingField.GetComponent<PlayingFieldController>();
+        loadLevel(startLevel);
+    }
+
+    public void unloadLevel()
+    {
+        FindObjectOfType<ResetLevel>().OnResetLevelClick();
+        for (int i = playingFieldController.transform.childCount - 1; i > 0; --i)
+        {
+            Destroy(playingFieldController.transform.GetChild(i).gameObject);
+        }
+    }
+
+    public void loadLevel(int levelId)
+    {
+        generateBaseLevel();
+
+        switch (levelId)
+        {
+            case 1:
+                playingFieldController.placeWall(new Vector3(0, 0, 0), PlayingFieldController.Direction.zplus);
+                playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.xplus);
+                playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
+                break;
+            case 2:
+                playingFieldController.placeWall(new Vector3(3, 0, 2), PlayingFieldController.Direction.xplus);
+                playingFieldController.placeWall(new Vector3(3, 0, 3), PlayingFieldController.Direction.xplus);
+                playingFieldController.placeWall(new Vector3(1, 0, 2), PlayingFieldController.Direction.xplus);
+                playingFieldController.placeWall(new Vector3(1, 0, 3), PlayingFieldController.Direction.xplus);
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
+
+        FindObjectOfType<AstarPath>().Scan();
+    }
+
+    private void generateBaseLevel()
+    {
         float stepSize = playingFieldController.getStepSize();
 
         for (int x = 0; x < xSize; x += (int)stepSize)
@@ -69,10 +113,8 @@ public class LevelGenerator : MonoBehaviour
 
         playingFieldController.placeBuffTrigger(new Vector3(1, 0, 1), new SlowBuff());
 
-        playingFieldController.placeWall(new Vector3(0, 0, 0), PlayingFieldController.Direction.zplus);
+        //playingFieldController.placeWall(new Vector3(0, 0, 0), PlayingFieldController.Direction.zplus);
         playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.xplus);
         playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
-
-        FindObjectOfType<AstarPath>().Scan();
     }
 }

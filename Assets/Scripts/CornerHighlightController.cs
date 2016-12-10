@@ -20,11 +20,13 @@ public class CornerHighlightController : MonoBehaviour
     private float animationSize = 1;
     private GameObject newWall;
     private Renderer[] renderers;
+    private ErrorText errorText;
 
     // Use this for initialization
     void Start()
     {
         renderers = GetComponentsInChildren<Renderer>();
+        errorText = FindObjectOfType<ErrorText>();
         SetMaterial(standard);
     }
 
@@ -90,6 +92,7 @@ public class CornerHighlightController : MonoBehaviour
                 {
                     Destroy(newWall);
                     FindObjectOfType<AstarPath>().Scan();
+                    errorText.DisplayError("Path to the exit cannot be fully obstructed");
                 }
             }
             else
