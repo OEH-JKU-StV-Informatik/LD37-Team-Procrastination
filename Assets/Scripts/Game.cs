@@ -10,6 +10,9 @@ public class Game : MonoBehaviour
     private Text scoreText;
     private float score = 0.0f;
     public EnemyController enemy;
+
+    public AudioSource buildMusic;
+    public AudioSource runMusic;
     void Update()
     {
         if (IsGameRunning())
@@ -22,6 +25,8 @@ public class Game : MonoBehaviour
 
     public void StartGame()
     {
+        buildMusic.Stop();
+        runMusic.Play();
         FindObjectOfType<AstarPath>().Scan();
 
         score = 0.0f;
@@ -44,6 +49,8 @@ public class Game : MonoBehaviour
 
     public void StopGame()
     {
+        runMusic.Stop();
+        buildMusic.Play();
         enemy.gameObject.SetActive(false);
         foreach (CornerHighlightController corner in FindObjectsOfType<CornerHighlightController>())
         {
