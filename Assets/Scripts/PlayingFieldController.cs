@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +7,12 @@ public class PlayingFieldController : MonoBehaviour
 {
     private GameObject startField;
     private GameObject endField;
+    public GameObject wallPrototype;
+    public GameObject fieldPrototype;
 
     private float stepSize = 1.0f;
 
-    public enum DIRECTION
+    public enum Direction
     {
         xplus, xminus, zplus, zminus
     }
@@ -47,7 +50,7 @@ public class PlayingFieldController : MonoBehaviour
     }
 
     // Enemy needs what movement is possible
-    public bool canGo(Vector3 position, DIRECTION direction)
+    public bool canGo(Vector3 position, Direction direction)
     {
         // (x+, x-, z+, z-)
         //ToDo: implement
@@ -64,5 +67,26 @@ public class PlayingFieldController : MonoBehaviour
     {
         //ToDo: implement
         return false;
+    }
+
+    internal GameObject placeFloor(Vector3 pos)
+    {
+        return Instantiate(fieldPrototype, pos, Quaternion.identity, gameObject.transform);
+    }
+
+    public GameObject placeWall(Vector3 position, Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.xminus:
+                return Instantiate(wallPrototype, position, Quaternion.Euler(0, 270, 0), gameObject.transform);
+            case Direction.xplus:
+                return Instantiate(wallPrototype, position, Quaternion.Euler(0, 90, 0), gameObject.transform);
+            case Direction.zminus:
+                return Instantiate(wallPrototype, position, Quaternion.Euler(0, 180, 0), gameObject.transform);
+            case Direction.zplus:
+                return Instantiate(wallPrototype, position, Quaternion.Euler(0, 0, 0), gameObject.transform);
+        }
+        throw new Exception("undefined state!");
     }
 }

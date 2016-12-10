@@ -8,27 +8,30 @@ public class LevelGenerator : MonoBehaviour
     public GameObject wallPrototype;
     public GameObject playingField;
 
+    public float xSize = 5;
+    public float zSize = 5;
+
     // Use this for initialization
     void Start()
     {
-        for (int i = 0; i < 5; i++)
+        for (int x = 0; x < xSize; x++)
         {
-            for (int j = 0; j < 5; j++)
+            for (int z = 0; z < zSize; z++)
             {
-                var newField = Instantiate(fieldPrototype, new Vector3(i, 0, j), Quaternion.identity, playingField.transform);
-                if (i == 1 && j == 1)
+                var newField = playingField.GetComponent<PlayingFieldController>().placeFloor(new Vector3(x, 0, z));
+                if (x == 1 && z == 1)
                 {
                     playingField.GetComponent<PlayingFieldController>().setStartField(newField);
                 }
-                if (i == 5 && j == 5)
+                if (x == 5 && z == 5)
                 {
                     playingField.GetComponent<PlayingFieldController>().setEndField(newField);
                 }
             }
         }
 
-        Instantiate(wallPrototype, new Vector3(0, 0, 0), Quaternion.identity, playingField.transform);
-        Instantiate(wallPrototype, new Vector3(1, 0, 1), Quaternion.Euler(0,90,0), playingField.transform);
-        Instantiate(wallPrototype, new Vector3(1, 0, 1), Quaternion.identity, playingField.transform);
+        playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(0, 0, 0), PlayingFieldController.Direction.zplus);
+        playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.xplus);
+        playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
     }
 }
