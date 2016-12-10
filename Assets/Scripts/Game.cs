@@ -1,22 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
+    public PlayingFieldController playingField;
+    [SerializeField]
+    private Text scoreText;
+    private float score = 0.0f;
+    public EnemyController enemy;
     void Update()
     {
+        if (enemy.gameObject.activeInHierarchy)
+        {
+            score += Time.deltaTime;
+        }
 
+        scoreText.text = string.Format("{0:0.##}", score);
     }
 
-    // todo when gamePart2 is started:
-    //      Enemy is 
+    public void StartGame()
+    {
+        score = 0.0f;
+        enemy.transform.position = playingField.getStartPosition() + Vector3.up * 0.1f;
+        enemy.transform.rotation = Quaternion.identity;
+        enemy.gameObject.SetActive(true);
+    }
+
+    public void StopGame()
+    {
+        enemy.gameObject.SetActive(false);
+    }
 }

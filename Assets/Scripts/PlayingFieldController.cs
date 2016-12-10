@@ -20,18 +20,6 @@ public class PlayingFieldController : MonoBehaviour
         xplus, xminus, zplus, zminus
     }
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public GameObject getEndField()
     {
         return endField;

@@ -20,6 +20,11 @@ public class EnemyController : MonoBehaviour
         {
             GetComponent<AIPath>().target =playingFieldController.getEndField().transform;
         }
+
+        if (GetComponent<AIPath>().TargetReached)
+        {
+            FindObjectOfType<StartButton>().StartClicked();
+        }
     }
 
 
