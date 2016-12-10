@@ -5,7 +5,7 @@ using UnityEngine;
 public class CornerHighlightController : MonoBehaviour
 {
     public GameObject draggableWallPrototype;
-    public GameObject playingField;
+    public PlayingFieldController playingField;
     public float animationStep = 0.006f;
     public float animationRange = 0.08f;
 
@@ -86,7 +86,12 @@ public class CornerHighlightController : MonoBehaviour
                 
                 // recalculate pathing
                 FindObjectOfType<AstarPath>().Scan();
-                //FindObjectOfType<AstarPath>().
+                if (!playingField.isValidLevel())
+                {
+                    Destroy(newWall);
+                    FindObjectOfType<AstarPath>().Scan();
+                    Debug.Log("newWall not valid");
+                }
             }
             else
             {
@@ -133,7 +138,6 @@ public class CornerHighlightController : MonoBehaviour
 
     private void SetMaterial(Material material)
     {
-        Debug.Log("ChangeColorTo " + material.name);
         foreach (Renderer renderer in renderers)
         {
             renderer.material = material;

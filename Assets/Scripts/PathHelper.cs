@@ -11,7 +11,7 @@ public class PathHelper : MonoBehaviour {
         seeker = GetComponent<Seeker>();
 	}
 	
-    bool isReachableFrom(Vector3 start, Vector3 end)
+    public bool isReachableFrom(Vector3 start, Vector3 end)
     {
         Path path = seeker.GetNewPath(start, end);
         AstarPath.StartPath(path, true);
