@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4981894878539396}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DraggableWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 33219799960870216}
   - component: {fileID: 65498976705866318}
   - component: {fileID: 23078181281004004}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

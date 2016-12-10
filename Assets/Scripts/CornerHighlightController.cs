@@ -31,7 +31,7 @@ public class CornerHighlightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!newWall)
+        if (dragging && !newWall)
         {
             resetSelections();
         }
@@ -142,6 +142,7 @@ public class CornerHighlightController : MonoBehaviour
 
     private void resetSelections()
     {
+        Debug.Log("Reset");
         if (selected)
         {
             selected.SetMaterial(standard);
