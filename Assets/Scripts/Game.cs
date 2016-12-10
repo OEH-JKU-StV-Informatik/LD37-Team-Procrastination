@@ -16,6 +16,9 @@ public class Game : MonoBehaviour
     private float maxDistance = 0.0f;
 
     public EnemyController enemy;
+
+    public AudioSource buildMusic;
+    public AudioSource runMusic;
     void Update()
     {
         if (IsGameRunning())
@@ -55,6 +58,8 @@ public class Game : MonoBehaviour
 
     public void StartGame()
     {
+        buildMusic.Stop();
+        runMusic.Play();
         FindObjectOfType<AstarPath>().Scan();
 
         enemy.transform.position = playingField.getStartPosition() + Vector3.up * 0.1f;
@@ -83,7 +88,9 @@ public class Game : MonoBehaviour
             PlayerPrefs.SetFloat("Highscore", score);
             updateHighscore();
         }
-
+        
+        runMusic.Stop();
+        buildMusic.Play();
         enemy.gameObject.SetActive(false);
         foreach (CornerHighlightController corner in FindObjectsOfType<CornerHighlightController>())
         {
