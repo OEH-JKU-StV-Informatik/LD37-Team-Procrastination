@@ -6,24 +6,26 @@ public class EnemyController : MonoBehaviour
 {
 
     public PlayingFieldController playingFieldController;
-
+    private AIPath aiPath;
+    private StartButton startButton;
     // Use this for initialization
     void Start()
     {
-        
+        aiPath = GetComponent<AIPath>();
+        startButton = FindObjectOfType<StartButton>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<AIPath>().target == null && playingFieldController.getEndField() != null)
+        if (aiPath.target == null && playingFieldController.getEndField() != null)
         {
-            GetComponent<AIPath>().target = playingFieldController.getEndField().transform;
+            aiPath.target = playingFieldController.getEndField().transform;
         }
 
-        if (GetComponent<AIPath>().TargetReached)
+        if (aiPath.TargetReached && gameObject.activeInHierarchy)
         {
-            FindObjectOfType<StartButton>().StartClicked();
+            startButton.StartClicked();
         }
     }
 
