@@ -12,7 +12,7 @@ public class Game : MonoBehaviour
     public EnemyController enemy;
     void Update()
     {
-        if (enemy.gameObject.activeInHierarchy)
+        if (IsGameRunning())
         {
             score += Time.deltaTime;
         }
@@ -54,5 +54,10 @@ public class Game : MonoBehaviour
                 renderer.enabled = true;
             }
         }
+    }
+
+    public bool IsGameRunning()
+    {
+        return enemy.gameObject.activeInHierarchy;
     }
 }
