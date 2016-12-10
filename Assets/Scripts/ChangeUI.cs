@@ -28,8 +28,12 @@ public class ChangeUI : MonoBehaviour
 
     public void changeUI()
     {
+        //Time.timeScale = displayMenu ? 1.0f : 0.0f; //cannot stop time properly
+        if (!FindObjectOfType<Game>().IsGameRunning())
+        {
+            toggleInGameUI();
+        }
         displayMenu = !displayMenu;
-        ingameUI.SetActive(!displayMenu);
         menuUI.SetActive(displayMenu);
         if (displayMenu)
         {
@@ -41,5 +45,10 @@ public class ChangeUI : MonoBehaviour
             menuCamera.SetActive(displayMenu);
             mainCamera.SetActive(!displayMenu);
         }
+    }
+
+    public void toggleInGameUI()
+    {
+        ingameUI.SetActive(displayMenu);
     }
 }

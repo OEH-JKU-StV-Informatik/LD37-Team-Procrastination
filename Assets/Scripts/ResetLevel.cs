@@ -5,19 +5,22 @@ using UnityEngine;
 public class ResetLevel : MonoBehaviour {
 
     private Game game;
-    private StartButton startButton;
 
     void Start()
     {
         game = FindObjectOfType<Game>();
-        startButton = FindObjectOfType<StartButton>();
     }
 
     public void OnResetLevelClick()
     {
         if (game.IsGameRunning())
         {
-            startButton.StartClicked();
+            game.StopGame();
+            foreach(StartButton b in FindObjectsOfType<StartButton>())
+            {
+                b.updateButton();
+            }
+            FindObjectOfType<ChangeUI>().changeUI();
         }
 
         foreach (DeleteWall wall in FindObjectsOfType<DeleteWall>())
