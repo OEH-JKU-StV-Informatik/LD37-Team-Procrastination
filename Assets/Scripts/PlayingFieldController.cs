@@ -10,7 +10,7 @@ public class PlayingFieldController : MonoBehaviour
     public GameObject wallPrototype;
     public GameObject fieldPrototype;
     public GameObject cornerHighlightPrototype;
-    
+
 
     public PathHelper pathHelper;
 
