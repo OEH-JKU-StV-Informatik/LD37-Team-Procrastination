@@ -90,7 +90,6 @@ public class CornerHighlightController : MonoBehaviour
                 {
                     Destroy(newWall);
                     FindObjectOfType<AstarPath>().Scan();
-                    Debug.Log("newWall not valid");
                 }
             }
             else
@@ -104,12 +103,15 @@ public class CornerHighlightController : MonoBehaviour
 
     void OnMouseDown()
     {
-        dragging = true;
-        //Instantiate(wallPrototype, position, Quaternion.Euler(0, 270, 0), gameObject.transform)
+        if (Input.GetMouseButtonDown(0))
+        {
+            dragging = true;
+            //Instantiate(wallPrototype, position, Quaternion.Euler(0, 270, 0), gameObject.transform)
 
-        newWall = Instantiate(draggableWallPrototype);
-        newWall.transform.position = transform.position;
-        newWall.transform.localScale = Vector3.zero;
+            newWall = Instantiate(draggableWallPrototype);
+            newWall.transform.position = transform.position;
+            newWall.transform.localScale = Vector3.zero;
+        }
     }
 
     void OnMouseOver()
@@ -146,7 +148,6 @@ public class CornerHighlightController : MonoBehaviour
 
     private void resetSelections()
     {
-        Debug.Log("Reset");
         if (selected)
         {
             selected.SetMaterial(standard);
