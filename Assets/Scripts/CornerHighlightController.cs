@@ -52,7 +52,8 @@ public class CornerHighlightController : MonoBehaviour
             {
                 validWall = (selected.transform.position - transform.position).magnitude <= 1.1;
                 selected.SetMaterial(validWall ? valid : invalid);
-            } else
+            }
+            else
             {
                 validWall = false;
             }
@@ -85,7 +86,7 @@ public class CornerHighlightController : MonoBehaviour
             {
                 newWall.transform.LookAt(selected.transform.position);
                 newWall.transform.localScale = Vector3.one;
-                
+
                 // recalculate pathing
                 FindObjectOfType<AstarPath>().Scan();
                 if (!playingField.isValidLevel())

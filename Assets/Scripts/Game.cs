@@ -7,9 +7,12 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour
 {
     public PlayingFieldController playingField;
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Text scoreMaxText;
-    [SerializeField] private Slider scoreMaxSlider;
+    [SerializeField]
+    private Text scoreText;
+    [SerializeField]
+    private Text scoreMaxText;
+    [SerializeField]
+    private Slider scoreMaxSlider;
 
     private float score = 0.0f;
     private float scoreMax = 0.0f;
@@ -117,11 +120,11 @@ public class Game : MonoBehaviour
         return enemy.gameObject.activeInHierarchy;
     }
 
-    public IEnumerator FadeOut(AudioSource audioSource) 
+    public IEnumerator FadeOut(AudioSource audioSource)
     {
         float startVolume = audioSource.volume;
 
-        while (audioSource.volume > 0) 
+        while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.deltaTime / this.musicFadeTime;
             yield return null;
@@ -130,13 +133,13 @@ public class Game : MonoBehaviour
         audioSource.volume = startVolume;
     }
 
-    public IEnumerator FadeIn(AudioSource audioSource) 
+    public IEnumerator FadeIn(AudioSource audioSource)
     {
         float endVolume = audioSource.volume;
         audioSource.volume = 0.0f;
         audioSource.Play();
 
-        while (audioSource.volume < endVolume) 
+        while (audioSource.volume < endVolume)
         {
             audioSource.volume += endVolume * Time.deltaTime / this.musicFadeTime;
             yield return null;

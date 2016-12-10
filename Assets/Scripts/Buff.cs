@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Buff {
+public interface Buff
+{
 
     void DoAction(EnemyController enemyController);
 }

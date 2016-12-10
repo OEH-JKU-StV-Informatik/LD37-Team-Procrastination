@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffTriggerController : MonoBehaviour {
+public class BuffTriggerController : MonoBehaviour
+{
 
     public Buff buff;
 
     // Use this for initialization
-	void Start () {
+    void Start()
+    {
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void OnTriggerEnter(Collider other)
     {

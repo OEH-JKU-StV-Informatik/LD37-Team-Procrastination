@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class SlowBuff : MonoBehaviour, Buff {
+public class SlowBuff : MonoBehaviour, Buff
+{
 
     private float old;
     private float countDown = 4;
