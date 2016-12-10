@@ -41,8 +41,6 @@ GameObject:
   - component: {fileID: 54475776233889582}
   - component: {fileID: 114469847274788830}
   - component: {fileID: 114886852036850866}
-  - component: {fileID: 114091327667535192}
-  - component: {fileID: 114660588246521980}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -200,28 +198,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &114091327667535192
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1301475731686694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ac18cdd242041b6bebc0e95b624c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  repathRate: 5
-  target: {fileID: 0}
-  canSearch: 1
-  canMove: 1
-  speed: 3
-  turningSpeed: 5
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 0.1
-  forwardLook: 1
-  endReachedDistance: 0.2
-  closestOnPathCheck: 1
 --- !u!114 &114362700111209560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,38 +227,11 @@ MonoBehaviour:
   canMove: 1
   speed: 30
   turningSpeed: 5
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 0.1
+  slowdownDistance: 0.1
+  pickNextWaypointDist: 0.3
   forwardLook: 1
   endReachedDistance: 0.2
   closestOnPathCheck: 1
---- !u!114 &114660588246521980
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1301475731686694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  traversableTagsCompatibility:
-    tagsChange: -1
-    tagsSet: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &114886852036850866
 MonoBehaviour:
   m_ObjectHideFlags: 1
