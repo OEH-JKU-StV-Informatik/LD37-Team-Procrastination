@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
     {
         if (GetComponent<AIPath>().target == null && playingFieldController.getEndField() != null)
         {
-            GetComponent<AIPath>().target =playingFieldController.getEndField().transform;
+            GetComponent<AIPath>().target = playingFieldController.getEndField().transform;
         }
 
         if (GetComponent<AIPath>().TargetReached)
