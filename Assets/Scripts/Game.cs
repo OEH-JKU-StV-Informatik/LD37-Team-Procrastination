@@ -6,9 +6,14 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour
 {
     public PlayingFieldController playingField;
-    [SerializeField]
-    private Text scoreText;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text scoreMaxText;
+    [SerializeField] private Slider scoreMaxSlider;
+
     private float score = 0.0f;
+    private float scoreMax = 0.0f;
+    private float maxDistance = 0.0f;
+
     public EnemyController enemy;
     void Update()
     {
@@ -18,11 +23,17 @@ public class Game : MonoBehaviour
         }
 
         scoreText.text = string.Format("{0:0.##}", score);
+        scoreMaxSlider.value =
+           1 - (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude/
+            maxDistance;
     }
 
     public void StartGame()
     {
         score = 0.0f;
+        scoreMax = 1337;
+        maxDistance = (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude;
+
         enemy.transform.position = playingField.getStartPosition() + Vector3.up * 0.1f;
         enemy.transform.rotation = Quaternion.identity;
         enemy.gameObject.SetActive(true);
