@@ -10,10 +10,9 @@ public class PlayingFieldController : MonoBehaviour
     public GameObject wallPrototype;
     public GameObject fieldPrototype;
     public GameObject cornerHighlightPrototype;
+    public GameObject buffTriggerPrototype;
 
     public PathHelper pathHelper;
-
-    private List<GameObject> cornerHighlightList = new List<GameObject>();
 
     private float stepSize = 1.0f;
 
@@ -93,8 +92,14 @@ public class PlayingFieldController : MonoBehaviour
     {
         GameObject newHighlight = Instantiate(cornerHighlightPrototype, position, Quaternion.identity, gameObject.transform);
         newHighlight.GetComponent<CornerHighlightController>().playingField = this;
-        cornerHighlightList.Add(newHighlight);
         return newHighlight;
+    }
+
+    public GameObject placeBuffTrigger(Vector3 position, Buff buff)
+    {
+        GameObject newBuffTrigger = Instantiate(buffTriggerPrototype, position, Quaternion.identity, gameObject.transform);
+        newBuffTrigger.GetComponent<BuffTriggerController>().buff = buff;
+        return newBuffTrigger;
     }
 
     public bool isValidLevel()

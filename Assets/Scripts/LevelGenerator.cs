@@ -67,6 +67,8 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        playingFieldController.placeBuffTrigger(new Vector3(1, 0, 1), new SlowBuff());
+
         playingFieldController.placeWall(new Vector3(0, 0, 0), PlayingFieldController.Direction.zplus);
         playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.xplus);
         playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
