@@ -15,6 +15,8 @@ public class Game : MonoBehaviour
     private float scoreMax = 0.0f;
     private float maxDistance = 0.0f;
 
+    public float musicFadeTime = 3.0f;
+
     public EnemyController enemy;
 
     public AudioSource buildMusic;
@@ -32,6 +34,8 @@ public class Game : MonoBehaviour
     void Start()
     {
         initIngameUI();
+
+        StartCoroutine("FadeIn", buildMusic);
     }
 
     private void updateIngameUI()
@@ -58,8 +62,10 @@ public class Game : MonoBehaviour
 
     public void StartGame()
     {
-        buildMusic.Stop();
-        runMusic.Play();
+        StopCoroutine("FadeOut");
+        StartCoroutine("FadeOut", buildMusic);
+        StopCoroutine("FadeIn");
+        StartCoroutine("FadeIn", runMusic);
         FindObjectOfType<AstarPath>().Scan();
 
         enemy.transform.position = playingField.getStartPosition() + Vector3.up * 0.1f;
@@ -88,9 +94,10 @@ public class Game : MonoBehaviour
             PlayerPrefs.SetFloat("Highscore", score);
             updateHighscore();
         }
-        
-        runMusic.Stop();
-        buildMusic.Play();
+        StopCoroutine("FadeOut");
+        StartCoroutine("FadeOut", runMusic);
+        StopCoroutine("FadeIn");
+        StartCoroutine("FadeIn", buildMusic);
         enemy.gameObject.SetActive(false);
         foreach (CornerHighlightController corner in FindObjectsOfType<CornerHighlightController>())
         {
@@ -109,4 +116,32 @@ public class Game : MonoBehaviour
     {
         return enemy.gameObject.activeInHierarchy;
     }
+
+    public IEnumerator FadeOut(AudioSource audioSource) 
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0) 
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / this.musicFadeTime;
+            yield return null;
+        }
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+
+    public IEnumerator FadeIn(AudioSource audioSource) 
+    {
+        float endVolume = audioSource.volume;
+        audioSource.volume = 0.0f;
+        audioSource.Play();
+
+        while (audioSource.volume < endVolume) 
+        {
+            audioSource.volume += endVolume * Time.deltaTime / this.musicFadeTime;
+            yield return null;
+        }
+        audioSource.volume = endVolume;
+    }
+
 }
