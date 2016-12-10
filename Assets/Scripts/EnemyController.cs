@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
 
-    public GameObject playingField;
+    public PlayingFieldController playingFieldController;
 
     // Use this for initialization
     void Start()
@@ -16,8 +16,6 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var playingFieldController = playingField.GetComponent<PlayingFieldController>();
-
         //if (playingFieldController.canGoXPlus())
         //{
         //    // goX+
