@@ -182,10 +182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec334d93f2898bd4e9965123479dcfc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldPrototype: {fileID: 1712301101138930, guid: 9eb573e052cf7d8499c7d57496279e52,
-    type: 2}
-  wallPrototype: {fileID: 1824802689864422, guid: e9cb43244c1b71f4aa2e6ab2567e5d1b,
-    type: 2}
   playingField: {fileID: 1804789758}
   xSize: 5
   zSize: 5
@@ -384,4 +380,6 @@ MonoBehaviour:
   wallPrototype: {fileID: 1824802689864422, guid: e9cb43244c1b71f4aa2e6ab2567e5d1b,
     type: 2}
   fieldPrototype: {fileID: 1712301101138930, guid: 9eb573e052cf7d8499c7d57496279e52,
+    type: 2}
+  cornerHighlightPrototype: {fileID: 1944304006560474, guid: 05b8d2eb976590d4dba986171cfad63a,
     type: 2}

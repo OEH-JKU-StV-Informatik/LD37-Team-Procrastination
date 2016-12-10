@@ -12,24 +12,41 @@ public class LevelGenerator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        for (int x = 0; x < xSize; x++)
+        var playingFieldController = playingField.GetComponent<PlayingFieldController>();
+        float stepSize = playingFieldController.getStepSize();
+
+        for (int x = 0; x < xSize; x+=(int)stepSize)
         {
-            for (int z = 0; z < zSize; z++)
+            for (int z = 0; z < zSize; z+=(int)stepSize)
             {
-                var newField = playingField.GetComponent<PlayingFieldController>().placeFloor(new Vector3(x, 0, z));
-                if (x == 1 && z == 1)
+                var newField = playingFieldController.placeFloor(new Vector3(x, 0, z));
+                if (x == 0 && z == 0)
                 {
-                    playingField.GetComponent<PlayingFieldController>().setStartField(newField);
+                    playingFieldController.setStartField(newField);
                 }
-                if (x == 5 && z == 5)
+                if (x == xSize-1 && z == zSize-1)
                 {
-                    playingField.GetComponent<PlayingFieldController>().setEndField(newField);
+                    playingFieldController.setEndField(newField);
+                }
+
+                playingFieldController.placeCornerHighlight(new Vector3(x - stepSize/2, 0, z - stepSize/2));
+                if (z == zSize-1)
+                {
+                    playingFieldController.placeCornerHighlight(new Vector3(x - stepSize / 2, 0, z + stepSize / 2));
+                }
+                if (x == xSize-1)
+                {
+                    playingFieldController.placeCornerHighlight(new Vector3(x + stepSize / 2, 0, z - stepSize / 2));
+                }
+                if (z == zSize - 1 && x == xSize - 1)
+                {
+                    playingFieldController.placeCornerHighlight(new Vector3(x + stepSize / 2, 0, z + stepSize / 2));
                 }
             }
         }
 
-        playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(0, 0, 0), PlayingFieldController.Direction.zplus);
-        playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.xplus);
-        playingField.GetComponent<PlayingFieldController>().placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
+        playingFieldController.placeWall(new Vector3(0, 0, 0), PlayingFieldController.Direction.zplus);
+        playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.xplus);
+        playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
     }
 }

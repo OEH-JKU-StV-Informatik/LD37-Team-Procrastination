@@ -9,6 +9,9 @@ public class PlayingFieldController : MonoBehaviour
     private GameObject endField;
     public GameObject wallPrototype;
     public GameObject fieldPrototype;
+    public GameObject cornerHighlightPrototype;
+
+    private List<GameObject> cornerHighlightList = new List<GameObject>();
 
     private float stepSize = 1.0f;
 
@@ -86,7 +89,17 @@ public class PlayingFieldController : MonoBehaviour
                 return Instantiate(wallPrototype, position, Quaternion.Euler(0, 180, 0), gameObject.transform);
             case Direction.zplus:
                 return Instantiate(wallPrototype, position, Quaternion.Euler(0, 0, 0), gameObject.transform);
+            default:
+                throw new Exception("undefined state!");
         }
-        throw new Exception("undefined state!");
     }
+
+    public GameObject placeCornerHighlight(Vector3 position)
+    {
+        GameObject newHighlight = Instantiate(cornerHighlightPrototype, position, Quaternion.identity, gameObject.transform);
+        newHighlight.GetComponent<CornerHighlightController>().playingField = gameObject;
+        //newHighlight.GetComponent<CornerHighlightController>().;
+        cornerHighlightList.Add(newHighlight);
+        return newHighlight;
+   }
 }
