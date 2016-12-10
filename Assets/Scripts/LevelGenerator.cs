@@ -5,9 +5,8 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public GameObject fieldPrototype;
+    public GameObject wallPrototype;
     public GameObject playingField;
-
-    //private float fieldSize = 1f;
 
     // Use this for initialization
     void Start()
@@ -27,5 +26,9 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
+
+        Instantiate(wallPrototype, new Vector3(0, 0, 0), Quaternion.identity, playingField.transform);
+        Instantiate(wallPrototype, new Vector3(1, 0, 1), Quaternion.Euler(0,90,0), playingField.transform);
+        Instantiate(wallPrototype, new Vector3(1, 0, 1), Quaternion.identity, playingField.transform);
     }
 }

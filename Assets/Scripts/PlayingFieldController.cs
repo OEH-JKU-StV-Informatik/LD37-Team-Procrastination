@@ -26,7 +26,6 @@ public class PlayingFieldController : MonoBehaviour
 
     }
 
-
     public void setStartField(GameObject startField)
     {
         this.startField = startField;
