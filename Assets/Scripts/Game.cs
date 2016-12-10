@@ -22,6 +22,8 @@ public class Game : MonoBehaviour
 
     public void StartGame()
     {
+        FindObjectOfType<AstarPath>().Scan();
+
         score = 0.0f;
         enemy.transform.position = playingField.getStartPosition() + Vector3.up * 0.1f;
         enemy.transform.rotation = Quaternion.identity;

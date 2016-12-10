@@ -101,7 +101,7 @@ public class CornerHighlightController : MonoBehaviour
         resetSelections();
     }
 
-    void OnMouseDown()
+    void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -112,10 +112,6 @@ public class CornerHighlightController : MonoBehaviour
             newWall.transform.position = transform.position;
             newWall.transform.localScale = Vector3.zero;
         }
-    }
-
-    void OnMouseOver()
-    {
         if (dragging)
         {
             transform.localScale = Vector3.one * (1 + animationRange);
