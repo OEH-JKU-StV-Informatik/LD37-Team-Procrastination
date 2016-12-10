@@ -10,10 +10,9 @@ public class PlayingFieldController : MonoBehaviour
     public GameObject wallPrototype;
     public GameObject fieldPrototype;
     public GameObject cornerHighlightPrototype;
+    
 
     public PathHelper pathHelper;
-
-    private List<GameObject> cornerHighlightList = new List<GameObject>();
 
     private float stepSize = 1.0f;
 
@@ -93,7 +92,6 @@ public class PlayingFieldController : MonoBehaviour
     {
         GameObject newHighlight = Instantiate(cornerHighlightPrototype, position, Quaternion.identity, gameObject.transform);
         newHighlight.GetComponent<CornerHighlightController>().playingField = this;
-        cornerHighlightList.Add(newHighlight);
         return newHighlight;
     }
 

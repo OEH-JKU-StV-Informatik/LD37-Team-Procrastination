@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeleteWall : MonoBehaviour {
+public class DeleteWall : MonoBehaviour
+{
 
     public void Destroy()
     {

@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class PathHelper : MonoBehaviour {
+public class PathHelper : MonoBehaviour
+{
     private Seeker seeker;
     public float validDistance = 0.4f;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         seeker = GetComponent<Seeker>();
-	}
-	
+    }
+
     public bool isReachableFrom(Vector3 start, Vector3 end)
     {
         Path path = seeker.GetNewPath(start, end);
