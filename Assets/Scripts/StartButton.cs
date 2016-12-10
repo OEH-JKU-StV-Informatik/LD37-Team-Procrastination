@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,14 +11,19 @@ public class StartButton : MonoBehaviour {
 
     public void StartClicked()
     {
-        if (text.text == "Start")
+        if (game.IsGameRunning())
         {
-            text.text = "Stop";
-            game.StartGame();
-        } else {
-            text.text = "Start";
             game.StopGame();
+        } else
+        {
+            game.StartGame();
         }
+        updateButton();
+    }
+
+    public void updateButton()
+    {
+        text.text = game.IsGameRunning() ? "Stop" : "Start";
     }
 }
     

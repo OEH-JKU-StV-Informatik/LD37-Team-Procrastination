@@ -17,6 +17,8 @@ public class Game : MonoBehaviour
     private float score = 0.0f;
     private float scoreMax = 0.0f;
     private float maxDistance = 0.0f;
+    
+    private bool displayMenu = false;
 
     public float musicFadeTime = 3.0f;
 
@@ -24,6 +26,7 @@ public class Game : MonoBehaviour
 
     public AudioSource buildMusic;
     public AudioSource runMusic;
+
     void Update()
     {
         if (IsGameRunning())
@@ -39,28 +42,6 @@ public class Game : MonoBehaviour
         initIngameUI();
 
         StartCoroutine("FadeIn", buildMusic);
-    }
-
-    private void updateIngameUI()
-    {
-        scoreText.text = string.Format("{0:0.##}", score);
-        scoreMaxSlider.value =
-           1 - (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude /
-            maxDistance;
-    }
-
-    private void updateHighscore()
-    {
-        scoreMax = PlayerPrefs.GetFloat("Highscore");
-        scoreMaxText.text = string.Format("{0:0.##}", scoreMax);
-    }
-
-    private void initIngameUI()
-    {
-        score = 0.0f;
-        maxDistance = (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude;
-        updateHighscore();
-        updateIngameUI();
     }
 
     public void StartGame()
@@ -119,7 +100,28 @@ public class Game : MonoBehaviour
     {
         return enemy.gameObject.activeInHierarchy;
     }
+    
+    private void updateIngameUI()
+    {
+        scoreText.text = string.Format("{0:0.##}", score);
+        scoreMaxSlider.value =
+           1 - (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude /
+            maxDistance;
+    }
 
+    private void updateHighscore()
+    {
+        scoreMax = PlayerPrefs.GetFloat("Highscore");
+        scoreMaxText.text = string.Format("{0:0.##}", scoreMax);
+    }
+
+    private void initIngameUI()
+    {
+        score = 0.0f;
+        maxDistance = (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude;
+        updateHighscore();
+        updateIngameUI();
+    }
     public IEnumerator FadeOut(AudioSource audioSource)
     {
         float startVolume = audioSource.volume;
@@ -146,5 +148,4 @@ public class Game : MonoBehaviour
         }
         audioSource.volume = endVolume;
     }
-
 }
