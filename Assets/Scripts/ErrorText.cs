@@ -20,7 +20,7 @@ public class ErrorText : MonoBehaviour {
         timeLeft -= Time.deltaTime;
         if (timeLeft < 0.0f)
         {
-            errorTextField.text = "";
+            gameObject.SetActive(false);
         }
 	}
 
@@ -33,5 +33,6 @@ public class ErrorText : MonoBehaviour {
     {
         errorTextField.text = message;
         timeLeft = seconds;
+        gameObject.SetActive(true);
     }
 }
