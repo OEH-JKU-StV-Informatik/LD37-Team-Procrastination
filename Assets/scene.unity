@@ -558,6 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e3e2483b5a9e741b545f650726089a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validDistance: 0.4
 --- !u!114 &967356427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,6 +1025,7 @@ MonoBehaviour:
     type: 2}
   cornerHighlightPrototype: {fileID: 1944304006560474, guid: 05b8d2eb976590d4dba986171cfad63a,
     type: 2}
+  pathHelper: {fileID: 967356426}
 --- !u!1 &1998603815
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using Pathfinding;
 
 public class PathHelper : MonoBehaviour {
     private Seeker seeker;
+    public float validDistance = 0.4f;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,9 @@ public class PathHelper : MonoBehaviour {
         Path path = seeker.GetNewPath(start, end);
         AstarPath.StartPath(path, true);
         AstarPath.WaitForPath(path);
-        return !path.error;
+        float distance = (end - path.vectorPath[path.vectorPath.Count - 1]).magnitude;
+
+        bool isReachable = !path.error && distance < validDistance;
+        return isReachable;
     }
 }
