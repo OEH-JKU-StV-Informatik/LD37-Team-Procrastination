@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -88,7 +89,7 @@ public class Game : MonoBehaviour
     {
         if (score > scoreMax)
         {
-            PlayerPrefs.SetFloat("Highscore", score);
+            PlayerPrefs.SetFloat("Highscore_" + FindObjectOfType<LevelGenerator>().selectedLevel, score);
             updateHighscore();
         }
         ResetVolumes();
@@ -125,11 +126,11 @@ public class Game : MonoBehaviour
 
     private void updateHighscore()
     {
-        scoreMax = PlayerPrefs.GetFloat("Highscore");
+        scoreMax = PlayerPrefs.GetFloat("Highscore_" + FindObjectOfType<LevelGenerator>().selectedLevel);
         scoreMaxText.text = string.Format("{0:0.##}", scoreMax);
     }
 
-    private void initIngameUI()
+    public void initIngameUI()
     {
         score = 0.0f;
         updateHighscore();
