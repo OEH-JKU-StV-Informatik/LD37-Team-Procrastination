@@ -73,19 +73,25 @@ public class PlayingFieldController : MonoBehaviour
 
     public GameObject placeWall(Vector3 position, Direction direction)
     {
+        GameObject wall;
         switch (direction)
         {
             case Direction.xminus:
-                return Instantiate(wallPrototype, position, Quaternion.Euler(0, 270, 0), gameObject.transform);
+                wall = Instantiate(wallPrototype, position, Quaternion.Euler(0, 270, 0), gameObject.transform);
+                break;
             case Direction.xplus:
-                return Instantiate(wallPrototype, position, Quaternion.Euler(0, 90, 0), gameObject.transform);
+                wall = Instantiate(wallPrototype, position, Quaternion.Euler(0, 90, 0), gameObject.transform);
+                break;
             case Direction.zminus:
-                return Instantiate(wallPrototype, position, Quaternion.Euler(0, 180, 0), gameObject.transform);
+                wall = Instantiate(wallPrototype, position, Quaternion.Euler(0, 180, 0), gameObject.transform);
+                break;
             case Direction.zplus:
-                return Instantiate(wallPrototype, position, Quaternion.Euler(0, 0, 0), gameObject.transform);
+                wall = Instantiate(wallPrototype, position, Quaternion.Euler(0, 0, 0), gameObject.transform);
+                break;
             default:
                 throw new Exception("undefined state!");
         }
+        return wall;
     }
 
     public GameObject placeCornerHighlight(Vector3 position)

@@ -128,6 +128,7 @@ public class CornerHighlightController : MonoBehaviour
             newWall = Instantiate(draggableWallPrototype);
             newWall.transform.position = transform.position;
             newWall.transform.localScale = Vector3.zero;
+            newWall.GetComponentInChildren<MeshRenderer>().material.color = new Color(0, 0, 0.85f);
         }
         //if (dragging)
         //{
