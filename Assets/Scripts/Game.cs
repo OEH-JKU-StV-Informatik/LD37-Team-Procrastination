@@ -52,9 +52,11 @@ public class Game : MonoBehaviour
         StartCoroutine("FadeIn", runMusic);
         FindObjectOfType<AstarPath>().Scan();
 
+        maxDistance = (playingField.getStartPosition() - playingField.getEndField().transform.position).magnitude;
+
         enemy.transform.position = playingField.getStartPosition() + Vector3.up * 0.1f;
         enemy.transform.rotation = Quaternion.identity;
-        maxDistance = (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude;
+
         enemy.gameObject.SetActive(true);
 
         initIngameUI();
@@ -106,8 +108,8 @@ public class Game : MonoBehaviour
     {
         scoreText.text = string.Format("{0:0.##}", score);
         scoreMaxSlider.value = enemy.gameObject.activeInHierarchy ?
-           1 - (enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude /
-            maxDistance : scoreMaxSlider.value;
+           1 - ((enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude /
+                maxDistance) : scoreMaxSlider.value;
     }
 
     private void updateHighscore()
@@ -119,7 +121,6 @@ public class Game : MonoBehaviour
     private void initIngameUI()
     {
         score = 0.0f;
-        maxDistance = 100.0f;
         updateHighscore();
         updateIngameUI();
     }
