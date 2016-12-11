@@ -9,22 +9,36 @@ public class LevelGenerator : MonoBehaviour
     public float xSize = 5;
     public float zSize = 5;
 
-    public int startLevel = 1;
+    public int selectedLevel = 1;
 
     private PlayingFieldController playingFieldController;
     private BuffController buffConftroller;
+
+    private int loadedLevel = -1;
 
     // Use this for initialization
     void Start()
     {
         playingFieldController = playingField.GetComponent<PlayingFieldController>();
         buffConftroller = gameObject.GetComponent<BuffController>();
-        loadLevel(startLevel);
     }
 
-    public void unloadLevel()
+    void Update()
     {
-        FindObjectOfType<ResetLevel>().OnResetLevelClick();
+        if (loadedLevel != selectedLevel)
+        {
+            if (loadedLevel > 0)
+            {
+                unloadLevel();
+            }
+            loadLevel(selectedLevel);
+            loadedLevel = selectedLevel;
+        }
+    }
+
+    private void unloadLevel()
+    {
+        Resources.FindObjectsOfTypeAll<ResetLevel>()[0].OnResetLevelClick();
         for (int i = playingFieldController.transform.childCount - 1; i > 0; --i)
         {
             Destroy(playingFieldController.transform.GetChild(i).gameObject);

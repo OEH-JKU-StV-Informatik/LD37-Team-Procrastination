@@ -6,13 +6,18 @@ public class ResetLevel : MonoBehaviour {
 
     private Game game;
 
-    void Start()
+    void Awake()
     {
-        game = FindObjectOfType<Game>();
+        game = Resources.FindObjectsOfTypeAll<Game>()[0];
     }
 
     public void OnResetLevelClick()
     {
+        if (game == null)
+        {
+            game = Resources.FindObjectsOfTypeAll<Game>()[0];
+        }
+
         if (game.IsGameRunning())
         {
             game.StopGame();
