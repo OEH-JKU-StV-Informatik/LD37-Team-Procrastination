@@ -23,6 +23,7 @@ public class BuffTriggerController : MonoBehaviour
             if (countDown <= 0)
             {
                 buff.GetComponent<Buff>().UnDoAction(enemy);
+                GetComponent<Collider>().enabled = false;
             }
         }
     }
