@@ -25,8 +25,9 @@ public class Game : MonoBehaviour
     public EnemyController enemy;
 
     public AudioSource buildMusic;
+    private float buildVolume;
     public AudioSource runMusic;
-
+    private float runVolume;
     void Update()
     {
         if (IsGameRunning())
@@ -39,13 +40,22 @@ public class Game : MonoBehaviour
 
     void Start()
     {
+        buildVolume = buildMusic.volume;
+        runVolume = runMusic.volume;
         initIngameUI();
 
         StartCoroutine("FadeIn", buildMusic);
     }
 
+    void ResetVolumes()
+    {
+        buildMusic.volume = buildVolume;
+        runMusic.volume = runVolume;
+    }
+
     public void StartGame()
     {
+        ResetVolumes();
         StopCoroutine("FadeOut");
         StartCoroutine("FadeOut", buildMusic);
         StopCoroutine("FadeIn");
@@ -81,6 +91,7 @@ public class Game : MonoBehaviour
             PlayerPrefs.SetFloat("Highscore", score);
             updateHighscore();
         }
+        ResetVolumes();
         StopCoroutine("FadeOut");
         StartCoroutine("FadeOut", runMusic);
         StopCoroutine("FadeIn");
