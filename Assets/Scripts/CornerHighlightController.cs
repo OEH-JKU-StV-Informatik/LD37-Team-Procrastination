@@ -6,8 +6,8 @@ public class CornerHighlightController : MonoBehaviour
 {
     public GameObject draggableWallPrototype;
     public PlayingFieldController playingField;
-    public float animationStep = 0.006f;
-    public float animationRange = 0.08f;
+    public float animationStep;
+    public float animationRange;
 
     public Material standard;
     public Material valid;
@@ -21,6 +21,8 @@ public class CornerHighlightController : MonoBehaviour
     private GameObject newWall;
     private Renderer[] renderers;
     private ErrorText errorText;
+
+    private bool animate = false;
 
     // Use this for initialization
     void Start()
@@ -59,12 +61,25 @@ public class CornerHighlightController : MonoBehaviour
             }
 
         }
+
+        //ANIMATION
+        if (animate)
+        {
+            var change = animationDirection * animationStep * Time.deltaTime;
+            animationSize += change;
+            Debug.Log("animation: " + change + '-' + animationSize + "(" + Time.deltaTime + ")");
+            transform.localScale = Vector3.one * animationSize;
+            if (Mathf.Abs(animationSize - 1) > animationRange)
+            {
+                animationDirection *= -1;
+            }
+        }
     }
 
     void OnMouseEnter()
     {
         selected = this;
-        animationDirection = 1;
+        startAnimation();
     }
 
     void OnMouseExit()
@@ -75,7 +90,7 @@ public class CornerHighlightController : MonoBehaviour
         }
         selected = null;
         if (!dragging)
-            transform.localScale = Vector3.one;
+            stopAnimation(false);
     }
 
     void OnMouseUp()
@@ -110,32 +125,19 @@ public class CornerHighlightController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             dragging = true;
-            //Instantiate(wallPrototype, position, Quaternion.Euler(0, 270, 0), gameObject.transform)
 
             newWall = Instantiate(draggableWallPrototype);
             newWall.transform.position = transform.position;
             newWall.transform.localScale = Vector3.zero;
         }
-        if (dragging)
-        {
-            transform.localScale = Vector3.one * (1 + animationRange);
-        }
-        else
-        {
-            var change = animationDirection * animationStep;
-            animationSize += change;
-            transform.localScale = Vector3.one * animationSize;
-            if (Mathf.Abs(animationSize - 1) > animationRange)
-            {
-                animationDirection *= -1;
-            }
-        }
+        //if (dragging)
+        //{
+        //}
     }
-
 
     void OnMouseDrag()
     {
-        transform.localScale = Vector3.one * (1 + animationRange);
+        stopAnimation(true);
     }
 
     private void SetMaterial(Material material)
@@ -157,4 +159,25 @@ public class CornerHighlightController : MonoBehaviour
         transform.localScale = Vector3.one;
         validWall = false;
     }
+
+    private void startAnimation()
+    {
+        animationDirection = 1;
+        animationSize = 1;
+        animate = true;
+    }
+
+    private void stopAnimation(bool large)
+    {
+        animate = false;
+        if (large)
+        {
+            transform.localScale = Vector3.one * (1 + animationRange);
+        }
+        else
+        {
+            transform.localScale = Vector3.one;
+        }
+    }
+
 }
