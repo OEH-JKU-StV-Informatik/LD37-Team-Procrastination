@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4022524555036808}
   - component: {fileID: 33869325807970818}
   - component: {fileID: 23340962345726168}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4105774613993114}
   - component: {fileID: 33932318256856746}
   - component: {fileID: 23175326230901216}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4299928058850106}
   - component: {fileID: 114871056130967282}
   - component: {fileID: 65657665421065822}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CornerHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
