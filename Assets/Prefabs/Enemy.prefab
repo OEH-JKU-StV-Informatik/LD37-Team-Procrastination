@@ -226,6 +226,7 @@ MonoBehaviour:
   canSearch: 1
   canMove: 1
   speed: 50
+  speedUp: 50
   turningSpeed: 50
   slowdownDistance: 0.1
   pickNextWaypointDist: 0.2
