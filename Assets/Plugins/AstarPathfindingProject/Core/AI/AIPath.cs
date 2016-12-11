@@ -62,6 +62,7 @@ public class AIPath : MonoBehaviour {
 	 * This is the maximum speed in world units per second.
 	 */
 	public float speed = 3;
+    public float speedUp = 100.0f;
 
 	/** Rotation speed.
 	 * Rotation is calculated using Quaternion.SLerp. This variable represents the damping, the higher, the faster it will be able to rotate.
@@ -327,7 +328,7 @@ public class AIPath : MonoBehaviour {
 		if (controller != null) {
 			controller.SimpleMove(dir);
 		} else if (rigid != null) {
-			rigid.AddForce(dir);
+            rigid.AddForce(dir * Time.deltaTime * speedUp);
 		} else {
 			tr.Translate(dir*Time.deltaTime, Space.World);
 		}
