@@ -67,7 +67,6 @@ public class CornerHighlightController : MonoBehaviour
         {
             var change = animationDirection * animationStep * Time.deltaTime;
             animationSize += change;
-            Debug.Log("animation: " + change + '-' + animationSize + "(" + Time.deltaTime + ")");
             transform.localScale = Vector3.one * animationSize;
             if (Mathf.Abs(animationSize - 1) > animationRange)
             {
