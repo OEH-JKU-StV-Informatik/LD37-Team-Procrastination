@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283f1438ee985749855686fe5a28ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultTextDisplayTime: 5
+  defaultTextDisplayTime: 3
   errorTextField: {fileID: 457092943}
 --- !u!1 &147693967
 GameObject:
