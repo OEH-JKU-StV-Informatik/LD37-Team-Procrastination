@@ -18,9 +18,9 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (aiPath.target == null && playingFieldController.getEndField() != null)
+        if (aiPath.target == null && playingFieldController.GetEndField() != null)
         {
-            aiPath.target = playingFieldController.getEndField().transform;
+            aiPath.target = playingFieldController.GetEndField().transform;
         }
 
         if (aiPath.TargetReached && gameObject.activeInHierarchy)

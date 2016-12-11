@@ -17,7 +17,7 @@ public class Game : MonoBehaviour
     private float score = 0.0f;
     private float scoreMax = 0.0f;
     private float maxDistance = 0.0f;
-    
+
     private bool displayMenu = false;
 
     public float musicFadeTime = 3.0f;
@@ -62,9 +62,9 @@ public class Game : MonoBehaviour
         StartCoroutine("FadeIn", runMusic);
         FindObjectOfType<AstarPath>().Scan();
 
-        maxDistance = (playingField.getStartPosition() - playingField.getEndField().transform.position).magnitude;
+        maxDistance = (playingField.GetStartPosition() - playingField.GetEndField().transform.position).magnitude;
 
-        enemy.transform.position = playingField.getStartPosition() + Vector3.up * 0.1f;
+        enemy.transform.position = playingField.GetStartPosition() + Vector3.up * 0.1f;
         enemy.transform.rotation = Quaternion.identity;
 
         enemy.gameObject.SetActive(true);
@@ -119,7 +119,7 @@ public class Game : MonoBehaviour
     {
         scoreText.text = string.Format("{0:0.##}", score);
         scoreMaxSlider.value = enemy.gameObject.activeInHierarchy ?
-           1 - ((enemy.transform.position - enemy.playingFieldController.getEndField().transform.position).magnitude /
+           1 - ((enemy.transform.position - enemy.playingFieldController.GetEndField().transform.position).magnitude /
                 maxDistance) : scoreMaxSlider.value;
     }
 

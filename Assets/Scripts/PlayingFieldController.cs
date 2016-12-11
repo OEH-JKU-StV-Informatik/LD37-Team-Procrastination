@@ -5,15 +5,13 @@ using UnityEngine;
 
 public class PlayingFieldController : MonoBehaviour
 {
-    private GameObject startField;
-    private GameObject endField;
     public GameObject wallPrototype;
     public GameObject fieldPrototype;
     public GameObject cornerHighlightPrototype;
-
-
+    public Material endFieldMaterial;
     public PathHelper pathHelper;
-
+    private GameObject startField;
+    private GameObject endField;
     private float stepSize = 1.0f;
 
     public enum Direction
@@ -21,57 +19,50 @@ public class PlayingFieldController : MonoBehaviour
         xplus, xminus, zplus, zminus
     }
 
-    public GameObject getEndField()
+    public GameObject GetEndField()
     {
         return endField;
     }
 
-    public void setStartField(GameObject startField)
+    public void SetStartField(GameObject startField)
     {
         this.startField = startField;
     }
 
-    public Vector3 getStartPosition()
+    public Vector3 GetStartPosition()
     {
         return startField.transform.position;
     }
 
-    public float getStepSize()
+    public float GetStepSize()
     {
         return stepSize;
     }
 
-    public void setEndField(GameObject endField)
+    public void SetEndField(GameObject endField)
     {
         this.endField = endField;
-    }
-
-    // Enemy needs what movement is possible
-    public bool canGo(Vector3 position, Direction direction)
-    {
-        // (x+, x-, z+, z-)
-        //ToDo: implement
-        return true;
+        SetFieldMaterial(endField, endFieldMaterial);
     }
 
     // Enemy needs isEndCondition
-    public bool isEndCondition(Vector3 position)
+    public bool IsEndCondition(Vector3 position)
     {
-        return isInside(position, endField);
+        return IsInside(position, endField);
     }
 
-    private bool isInside(Vector3 position, GameObject comparator)
+    private bool IsInside(Vector3 position, GameObject comparator)
     {
         //ToDo: implement
         return false;
     }
 
-    internal GameObject placeFloor(Vector3 position)
+    internal GameObject PlaceFloor(Vector3 position)
     {
         return Instantiate(fieldPrototype, position, Quaternion.identity, gameObject.transform);
     }
 
-    public GameObject placeWall(Vector3 position, Direction direction)
+    public GameObject PlaceWall(Vector3 position, Direction direction)
     {
         switch (direction)
         {
@@ -88,15 +79,21 @@ public class PlayingFieldController : MonoBehaviour
         }
     }
 
-    public GameObject placeCornerHighlight(Vector3 position)
+    public GameObject PlaceCornerHighlight(Vector3 position)
     {
         GameObject newHighlight = Instantiate(cornerHighlightPrototype, position, Quaternion.identity, gameObject.transform);
         newHighlight.GetComponent<CornerHighlightController>().playingField = this;
         return newHighlight;
     }
 
-    public bool isValidLevel()
+    public bool IsValidLevel()
     {
         return pathHelper.isReachableFrom(startField.transform.position, endField.transform.position);
+    }
+
+    private void SetFieldMaterial(GameObject field, Material material)
+    {
+        field.GetComponent<FieldController>().quad.GetComponent<Renderer>().material = material;
+        //endField.GetComponent<Renderer>().material = endFieldMaterial;
     }
 }

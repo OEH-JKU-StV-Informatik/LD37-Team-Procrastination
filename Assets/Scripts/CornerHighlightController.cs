@@ -103,7 +103,7 @@ public class CornerHighlightController : MonoBehaviour
 
                 // recalculate pathing
                 FindObjectOfType<AstarPath>().Scan();
-                if (!playingField.isValidLevel())
+                if (!playingField.IsValidLevel())
                 {
                     Destroy(newWall);
                     FindObjectOfType<AstarPath>().Scan();

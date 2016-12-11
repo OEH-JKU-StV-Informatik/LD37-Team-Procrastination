@@ -4285,6 +4285,7 @@ MonoBehaviour:
     type: 2}
   cornerHighlightPrototype: {fileID: 1944304006560474, guid: 05b8d2eb976590d4dba986171cfad63a,
     type: 2}
+  endFieldMaterial: {fileID: 2100000, guid: 8dfd53b03550c0f48a2e438c60eaefb1, type: 2}
   pathHelper: {fileID: 967356426}
 --- !u!1 &1947835094
 GameObject:

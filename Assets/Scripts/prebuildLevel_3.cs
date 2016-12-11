@@ -11,24 +11,24 @@ public class prebuildLevel_3 : MonoBehaviour {
     {
         field = gameObject.GetComponent<PlayingFieldController>();
         
-        field.placeWall(new Vector3(1, 0, 0), PlayingFieldController.Direction.zplus);
-        field.placeWall(new Vector3(2, 0, 0), PlayingFieldController.Direction.xplus);
-        field.placeWall(new Vector3(0, 0, 2), PlayingFieldController.Direction.xplus);
-        field.placeWall(new Vector3(0, 0, 3), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(1, 0, 0), PlayingFieldController.Direction.zplus);
+        field.PlaceWall(new Vector3(2, 0, 0), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(0, 0, 2), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(0, 0, 3), PlayingFieldController.Direction.xplus);
         
-        field.placeWall(new Vector3(1, 0, 3), PlayingFieldController.Direction.xplus);
-        field.placeWall(new Vector3(1, 0, 2), PlayingFieldController.Direction.xplus);
-        field.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
+        field.PlaceWall(new Vector3(1, 0, 3), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(1, 0, 2), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
 
-        field.placeWall(new Vector3(2, 0, 0), PlayingFieldController.Direction.xplus);
-        field.placeWall(new Vector3(2, 0, 1), PlayingFieldController.Direction.xplus);
-        field.placeWall(new Vector3(2, 0, 2), PlayingFieldController.Direction.xplus);
-        field.placeWall(new Vector3(2, 0, 3), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(2, 0, 0), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(2, 0, 1), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(2, 0, 2), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(2, 0, 3), PlayingFieldController.Direction.xplus);
 
-        field.placeWall(new Vector3(3, 0, 3), PlayingFieldController.Direction.xplus);
-        field.placeWall(new Vector3(3, 0, 1), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(3, 0, 3), PlayingFieldController.Direction.xplus);
+        field.PlaceWall(new Vector3(3, 0, 1), PlayingFieldController.Direction.xplus);
 
-        field.placeWall(new Vector3(4, 0, 4), PlayingFieldController.Direction.xminus);
+        field.PlaceWall(new Vector3(4, 0, 4), PlayingFieldController.Direction.xminus);
 
         //Debuffs pls
     }
