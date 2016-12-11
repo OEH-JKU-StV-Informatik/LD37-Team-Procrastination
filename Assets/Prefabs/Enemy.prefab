@@ -38,9 +38,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4677874879494680}
   - component: {fileID: 114362700111209560}
-  - component: {fileID: 54475776233889582}
   - component: {fileID: 114469847274788830}
   - component: {fileID: 114886852036850866}
+  - component: {fileID: 54603506586863484}
+  - component: {fileID: 143595106683351080}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -183,21 +184,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593757002937246}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54475776233889582
+--- !u!54 &54603506586863484
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301475731686694}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 10
-  m_AngularDrag: 10
+  m_Mass: 5
+  m_Drag: 3
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 84
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &114362700111209560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,8 +226,7 @@ MonoBehaviour:
   target: {fileID: 0}
   canSearch: 1
   canMove: 1
-  speed: 50
-  speedUp: 50
+  speed: 2
   turningSpeed: 50
   slowdownDistance: 0.1
   pickNextWaypointDist: 0.2
@@ -285,3 +285,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &143595106683351080
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1301475731686694}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
