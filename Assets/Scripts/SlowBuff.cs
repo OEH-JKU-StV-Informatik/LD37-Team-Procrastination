@@ -8,20 +8,30 @@ public class SlowBuff : MonoBehaviour, Buff
     private float old;
     public float slowFactor = 0.05f;
 
+    private static bool isSlowed = false;
+
     void Update()
     {
     }
 
     public void DoAction(EnemyController enemyController)
     {
-        Debug.Log("Slow Enemy!");
-        old = enemyController.GetComponent<AIPath>().speed;
-        enemyController.GetComponent<AIPath>().speed = old * slowFactor;
+        if (!isSlowed)
+        {
+            Debug.Log("Slow Enemy!");
+            old = enemyController.GetComponent<AIPath>().speed;
+            enemyController.GetComponent<AIPath>().speed = old * slowFactor;
+            isSlowed = true;
+        }
     }
 
     public void UnDoAction(EnemyController enemyController)
     {
-        Debug.Log("Un-Slow Enemy!");
-        enemyController.GetComponent<AIPath>().speed = old;
+        if (isSlowed)
+        {
+            Debug.Log("Un-Slow Enemy!");
+            enemyController.GetComponent<AIPath>().speed = old;
+            isSlowed = false;
+        }
     }
 }

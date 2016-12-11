@@ -59,14 +59,30 @@ public class LevelGenerator : MonoBehaviour
                 playingFieldController.placeWall(new Vector3(0, 0, 0), PlayingFieldController.Direction.zplus);
                 playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.xplus);
                 playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
+                buffConftroller.placeBuffTrigger(new Vector3(1, 0, 1), buffConftroller.slowBuffPrototype);
+                buffConftroller.placeBuffTrigger(new Vector3(3, 0, 2), buffConftroller.slowBuffPrototype);
+                buffConftroller.placeBuffTrigger(new Vector3(3, 0, 3), buffConftroller.slowBuffPrototype);
                 break;
             case 2:
                 playingFieldController.placeWall(new Vector3(3, 0, 2), PlayingFieldController.Direction.xplus);
                 playingFieldController.placeWall(new Vector3(3, 0, 3), PlayingFieldController.Direction.xplus);
                 playingFieldController.placeWall(new Vector3(1, 0, 2), PlayingFieldController.Direction.xplus);
                 playingFieldController.placeWall(new Vector3(1, 0, 3), PlayingFieldController.Direction.xplus);
+
+                buffConftroller.placeBuffTrigger(new Vector3(4, 0, 3), buffConftroller.slowBuffPrototype);
+                buffConftroller.placeBuffTrigger(new Vector3(3, 0, 4), buffConftroller.slowBuffPrototype);
                 break;
             case 3:
+                playingFieldController.placeWall(new Vector3(3, 0, 3), PlayingFieldController.Direction.xplus);
+                playingFieldController.placeWall(new Vector3(1, 0, 2), PlayingFieldController.Direction.xplus);
+                playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.xplus);
+                playingFieldController.placeWall(new Vector3(1, 0, 1), PlayingFieldController.Direction.zplus);
+
+                buffConftroller.placeBuffTrigger(new Vector3(3, 0, 3), buffConftroller.slowBuffPrototype);
+                buffConftroller.placeBuffTrigger(new Vector3(2, 0, 2), buffConftroller.slowBuffPrototype);
+                buffConftroller.placeBuffTrigger(new Vector3(1, 0, 1), buffConftroller.slowBuffPrototype);
+                buffConftroller.placeBuffTrigger(new Vector3(2, 0, 3), buffConftroller.slowBuffPrototype);
+                buffConftroller.placeBuffTrigger(new Vector3(3, 0, 1), buffConftroller.slowBuffPrototype);
                 break;
             default:
                 break;
