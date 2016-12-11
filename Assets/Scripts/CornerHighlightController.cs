@@ -26,7 +26,7 @@ public class CornerHighlightController : MonoBehaviour
     void Start()
     {
         renderers = GetComponentsInChildren<Renderer>();
-        errorText = FindObjectOfType<ErrorText>();
+        errorText = Resources.FindObjectsOfTypeAll<ErrorText>()[0];
         SetMaterial(standard);
     }
 
