@@ -7,6 +7,6 @@ public class ResetHighscore : MonoBehaviour {
 
     public void resetHighscore()
     {
-        PlayerPrefs.SetFloat("Highscore_" + SceneManager.GetActiveScene().name, 0f);
+        PlayerPrefs.SetFloat("Highscore_" + FindObjectOfType<LevelGenerator>().selectedLevel, 0f);
     }
 }

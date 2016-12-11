@@ -89,7 +89,7 @@ public class Game : MonoBehaviour
     {
         if (score > scoreMax)
         {
-            PlayerPrefs.SetFloat("Highscore_"+SceneManager.GetActiveScene().name, score);
+            PlayerPrefs.SetFloat("Highscore_" + FindObjectOfType<LevelGenerator>().selectedLevel, score);
             updateHighscore();
         }
         ResetVolumes();
@@ -126,11 +126,11 @@ public class Game : MonoBehaviour
 
     private void updateHighscore()
     {
-        scoreMax = PlayerPrefs.GetFloat("Highscore_" + SceneManager.GetActiveScene().name);
+        scoreMax = PlayerPrefs.GetFloat("Highscore_" + FindObjectOfType<LevelGenerator>().selectedLevel);
         scoreMaxText.text = string.Format("{0:0.##}", scoreMax);
     }
 
-    private void initIngameUI()
+    public void initIngameUI()
     {
         score = 0.0f;
         updateHighscore();
