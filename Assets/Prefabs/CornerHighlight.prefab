@@ -205,7 +205,7 @@ MonoBehaviour:
   draggableWallPrototype: {fileID: 1224593027387322, guid: b240bacf9b772584c9276eada05247fd,
     type: 2}
   playingField: {fileID: 0}
-  animationStep: 0.1
+  animationStep: 0.7
   animationRange: 0.08
   standard: {fileID: 2100000, guid: f0c38db1a34ea3b42a6d0b1cb334d514, type: 2}
   valid: {fileID: 2100000, guid: 115cddde7a4b5bf45b8100e25aef4744, type: 2}
