@@ -811,8 +811,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c523267a7d7a74aa681a2bca2d03e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelText: {fileID: 0}
-  levelGenerator: {fileID: 0}
+  levelText: {fileID: 1415064708}
+  levelGenerator: {fileID: 803011807}
   minLevel: 1
   maxLevel: 3
 --- !u!1 &503171779
