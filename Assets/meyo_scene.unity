@@ -879,7 +879,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Error Text
+  m_Text: error
 --- !u!222 &457092944
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1703,6 +1703,7 @@ MonoBehaviour:
   xSize: 5
   zSize: 5
   selectedLevel: 1
+  selectedLevelTimeWin: 10
 --- !u!114 &803011808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1714,6 +1715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d435ec7584a8635448d9bd89aea6ea28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelSelector: {fileID: 494418738}
   playingField: {fileID: 1804789760}
   scoreText: {fileID: 939918631}
   scoreMaxText: {fileID: 711121758}

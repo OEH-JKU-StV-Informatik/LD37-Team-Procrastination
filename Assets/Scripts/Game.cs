@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
+    public LevelSelection levelSelector;
     public PlayingFieldController playingField;
     [SerializeField]
     private Text scoreText;
@@ -92,8 +93,9 @@ public class Game : MonoBehaviour
             PlayerPrefs.SetFloat("Highscore_" + FindObjectOfType<LevelGenerator>().selectedLevel, score);
             if (score > FindObjectOfType<LevelGenerator>().selectedLevelTimeWin)
             {
-                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("Win!", 5);
-                Resources.FindObjectsOfTypeAll<LevelSelection>().NextLevel();
+                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("Win!" + Environment.NewLine + 
+                                                                              "You won the Level and set a new Highscore", 5);
+                levelSelector.NextLevel();
             }
             updateHighscore();
         }
