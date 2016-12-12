@@ -19,8 +19,8 @@ public class SlowBuff : MonoBehaviour, Buff
         if (!isSlowed)
         {
             Debug.Log("Slow Enemy!");
-            old = enemyController.GetComponent<AIPath>().speed;
-            enemyController.GetComponent<AIPath>().speed = old * slowFactor;
+            old = enemyController.getSpeed();
+            enemyController.setSpeed(old * slowFactor);
             isSlowed = true;
         }
     }
@@ -30,7 +30,7 @@ public class SlowBuff : MonoBehaviour, Buff
         if (isSlowed)
         {
             Debug.Log("Un-Slow Enemy!");
-            enemyController.GetComponent<AIPath>().speed = old;
+            enemyController.setSpeed(old);
             isSlowed = false;
         }
     }

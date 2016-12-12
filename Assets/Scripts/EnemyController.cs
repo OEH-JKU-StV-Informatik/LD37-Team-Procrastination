@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    
+
     private AIPath aiPath;
     private StartButton startButton;
     private Game game;
@@ -35,6 +35,16 @@ public class EnemyController : MonoBehaviour
         aiPath.forwardLook = 10;
         aiPath.endReachedDistance = 2;
         aiPath.target = t;
+    }
+
+    public void setSpeed(float speed)
+    {
+        aiPath.speed = speed;
+    }
+
+    public float getSpeed()
+    {
+        return aiPath.speed;
     }
 
     internal void SetGame(Game game)
