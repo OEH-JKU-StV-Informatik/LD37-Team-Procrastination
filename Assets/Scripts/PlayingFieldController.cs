@@ -10,6 +10,8 @@ public class PlayingFieldController : MonoBehaviour
     public GameObject cornerHighlightPrototype;
     public Material endFieldMaterial;
     public PathHelper pathHelper;
+    public int maxWalls;
+    public int currentWalls;
     private GameObject startField;
     private GameObject endField;
     private float stepSize = 10.0f;
@@ -17,11 +19,6 @@ public class PlayingFieldController : MonoBehaviour
     public enum Direction
     {
         xplus, xminus, zplus, zminus
-    }
-
-    public GameObject GetEndField()
-    {
-        return endField;
     }
 
     public void SetStartField(GameObject startField)
@@ -37,6 +34,11 @@ public class PlayingFieldController : MonoBehaviour
     public float GetStepSize()
     {
         return stepSize;
+    }
+
+    public GameObject GetEndField()
+    {
+        return endField;
     }
 
     public void SetEndField(GameObject endField)
