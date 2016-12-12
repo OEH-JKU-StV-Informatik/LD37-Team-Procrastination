@@ -10,12 +10,9 @@ public class DeleteWall : MonoBehaviour
         Destroy(transform.parent.gameObject);
     }
 
-    void OnMouseOver()
+    public void DestroyAndRecalculate()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            this.Destroy();
-            FindObjectOfType<AstarPath>().Scan();
-        }
+        this.Destroy();
+        FindObjectOfType<AstarPath>().Scan();
     }
 }

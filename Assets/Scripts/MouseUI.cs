@@ -6,11 +6,20 @@ public class MouseUI : MonoBehaviour
 {
     void Update()
     {
-        RaycastHit hitInfo = new RaycastHit();
+        RaycastHit[] hitInfos;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hitInfo, 1000, 1 << LayerMask.NameToLayer("MouseUI")))
+        hitInfos = Physics.RaycastAll(ray);
+
+        foreach (RaycastHit hitInfo in hitInfos)
         {
-            hitInfo.transform.gameObject.GetComponent<MouseUIObject>().OnMouseOver();
+            MouseUIObject mouseObject = hitInfo.transform.gameObject.GetComponent<MouseUIObject>();
+            if (mouseObject != null)
+                mouseObject.OnMouseOver();
+
+            DeleteWall deleteWall = hitInfo.transform.gameObject.GetComponent<DeleteWall>();
+            if (deleteWall != null && Input.GetMouseButtonDown(1))
+                deleteWall.DestroyAndRecalculate();
+
         }
     }
 }
