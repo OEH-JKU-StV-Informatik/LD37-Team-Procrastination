@@ -115,8 +115,15 @@ public class CornerHighlightController : MouseUIObject
 
         if (!dragging && mouseOver && Input.GetMouseButtonDown(0))
         {
-            dragging = true;
-            Debug.Log("Start Dragging");
+            if (playingFieldController.currentWalls < playingFieldController.maxWalls)
+            {
+                dragging = true;
+                Debug.Log("Start Dragging");
+            }
+            else
+            {
+                errorText.DisplayError("All walls are already used!");
+            }
         }
 
         if (dragging && animate)
