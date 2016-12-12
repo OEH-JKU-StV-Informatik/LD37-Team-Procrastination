@@ -63,6 +63,7 @@ public class Game : MonoBehaviour
         StopCoroutine("FadeIn");
         StartCoroutine("FadeIn", runMusic);
         FindObjectOfType<AstarPath>().Scan();
+        playingField.IsValidLevel();
 
         maxDistance = (playingField.GetStartPosition() - playingField.GetEndField().transform.position).magnitude;
 
@@ -88,22 +89,6 @@ public class Game : MonoBehaviour
 
     public void StopGame()
     {
-        if (score > scoreMax)
-        {
-            PlayerPrefs.SetFloat("Highscore_" + FindObjectOfType<LevelGenerator>().selectedLevel, score);
-            if (score > FindObjectOfType<LevelGenerator>().selectedLevelTimeWin)
-            {
-                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("Win!" + Environment.NewLine +
-                                                                              "<size=14>You won the level and set a new highscore</size>", 4);
-                levelSelector.NextLevel();
-            }
-            else
-            {
-                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("New Highscore!" + Environment.NewLine +
-                                                                              "<size=14>The level is not yet complete though</size>", 4);
-            }
-            updateHighscore();
-        }
         ResetVolumes();
         StopCoroutine("FadeOut");
         StartCoroutine("FadeOut", runMusic);
@@ -119,6 +104,24 @@ public class Game : MonoBehaviour
             foreach (Renderer renderer in corner.GetComponentsInChildren<Renderer>())
             {
                 renderer.enabled = true;
+            }
+        }
+
+        //update UI and Highscore
+        if (score > scoreMax)
+        {
+            PlayerPrefs.SetFloat("Highscore_" + FindObjectOfType<LevelGenerator>().selectedLevel, score);
+            updateHighscore();
+            if (score > FindObjectOfType<LevelGenerator>().selectedLevelTimeWin)
+            {
+                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("Win!" + Environment.NewLine +
+                                                                              "<size=14>You won the level and set a new highscore</size>", 4);
+                levelSelector.NextLevel();
+            }
+            else
+            {
+                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("New Highscore!" + Environment.NewLine +
+                                                                              "<size=14>The level is not yet complete though</size>", 4);
             }
         }
     }

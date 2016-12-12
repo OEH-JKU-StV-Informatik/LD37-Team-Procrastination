@@ -28,6 +28,4 @@ public class EnemyController : MonoBehaviour
             startButton.StartClicked();
         }
     }
-
-
 }
