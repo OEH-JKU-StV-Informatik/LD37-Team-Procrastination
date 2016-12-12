@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class PlayingFieldController : MonoBehaviour
 {
+    public static int maxWalls;
+    public static int currentWalls;
+
     public GameObject wallPrototype;
     public GameObject fieldPrototype;
     public GameObject cornerHighlightPrototype;
     public Material endFieldMaterial;
     public PathHelper pathHelper;
-    public int maxWalls;
-    public int currentWalls;
+
     private GameObject startField;
     private GameObject endField;
     private float stepSize = 10.0f;

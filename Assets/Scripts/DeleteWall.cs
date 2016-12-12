@@ -8,6 +8,7 @@ public class DeleteWall : MonoBehaviour
     public void Destroy()
     {
         Destroy(transform.parent.gameObject);
+        PlayingFieldController.currentWalls--;
     }
 
     public void DestroyAndRecalculate()
