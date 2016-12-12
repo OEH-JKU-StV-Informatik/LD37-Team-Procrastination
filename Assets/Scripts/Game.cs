@@ -9,6 +9,8 @@ public class Game : MonoBehaviour
 {
     public LevelSelection levelSelector;
     public PlayingFieldController playingField;
+    public EnemyController enemyPrototype;
+    public StartButton startButton;
     [SerializeField]
     private Text scoreText;
     [SerializeField]
@@ -22,7 +24,8 @@ public class Game : MonoBehaviour
 
     public float musicFadeTime = 3.0f;
 
-    public EnemyController enemy;
+
+    private EnemyController enemy;
 
     public AudioSource buildMusic;
     private float buildVolume;
@@ -55,6 +58,10 @@ public class Game : MonoBehaviour
 
     public void StartGame()
     {
+        enemy = Instantiate(enemyPrototype, playingField.GetStartPosition(), Quaternion.identity);
+        enemy.SetTarget(playingField.GetEndField().transform);
+        enemy.SetGame(this);
+
         ResetVolumes();
         StopCoroutine("FadeOut");
         StartCoroutine("FadeOut", buildMusic);
@@ -67,8 +74,6 @@ public class Game : MonoBehaviour
 
         enemy.transform.position = playingField.GetStartPosition() + Vector3.up * 0.1f;
         enemy.transform.rotation = Quaternion.identity;
-
-        enemy.gameObject.SetActive(true);
 
         initIngameUI();
 
@@ -87,12 +92,14 @@ public class Game : MonoBehaviour
 
     public void StopGame()
     {
+        DestroyImmediate(enemy.gameObject);
+        startButton.updateButton();
+
         ResetVolumes();
         StopCoroutine("FadeOut");
         StartCoroutine("FadeOut", runMusic);
         StopCoroutine("FadeIn");
         StartCoroutine("FadeIn", buildMusic);
-        enemy.gameObject.SetActive(false);
         foreach (CornerHighlightController corner in FindObjectsOfType<CornerHighlightController>())
         {
             foreach (Collider collider in corner.GetComponentsInChildren<Collider>())
@@ -126,14 +133,14 @@ public class Game : MonoBehaviour
 
     public bool IsGameRunning()
     {
-        return enemy.gameObject.activeInHierarchy;
+        return enemy != null;
     }
 
     private void updateIngameUI()
     {
         scoreText.text = string.Format("{0:0.##}", score);
-        scoreMaxSlider.value = enemy.gameObject.activeInHierarchy ?
-           1 - ((enemy.transform.position - enemy.playingFieldController.GetEndField().transform.position).magnitude /
+        scoreMaxSlider.value = IsGameRunning() ?
+           1 - ((enemy.transform.position - playingField.GetEndField().transform.position).magnitude /
                 maxDistance) : scoreMaxSlider.value;
     }
 
