@@ -2016,6 +2016,48 @@ Prefab:
       propertyPath: playingFieldController
       value: 
       objectReference: {fileID: 1804789760}
+    - target: {fileID: 114469847274788830, guid: 36fa023ed6234874493c8c6d4ff893a8,
+        type: 2}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114469847274788830, guid: 36fa023ed6234874493c8c6d4ff893a8,
+        type: 2}
+      propertyPath: slowdownDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114469847274788830, guid: 36fa023ed6234874493c8c6d4ff893a8,
+        type: 2}
+      propertyPath: pickNextWaypointDist
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114469847274788830, guid: 36fa023ed6234874493c8c6d4ff893a8,
+        type: 2}
+      propertyPath: forwardLook
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114469847274788830, guid: 36fa023ed6234874493c8c6d4ff893a8,
+        type: 2}
+      propertyPath: endReachedDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186431670551744, guid: 36fa023ed6234874493c8c6d4ff893a8, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186431670551744, guid: 36fa023ed6234874493c8c6d4ff893a8, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186431670551744, guid: 36fa023ed6234874493c8c6d4ff893a8, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114469847274788830, guid: 36fa023ed6234874493c8c6d4ff893a8,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36fa023ed6234874493c8c6d4ff893a8, type: 2}
   m_IsPrefabParent: 0
