@@ -63,7 +63,9 @@ public class PlayingFieldController : MonoBehaviour
 
     internal GameObject PlaceFloor(Vector3 position)
     {
-        return Instantiate(fieldPrototype, position, Quaternion.identity, gameObject.transform);
+        GameObject floor = Instantiate(fieldPrototype, position, Quaternion.identity, gameObject.transform);
+        //floor.GetComponent<Renderer>().material.color = new Color(1,1,1,0.5f);
+        return floor;
     }
 
     public GameObject PlaceWall(Vector3 position, Direction direction)

@@ -12,6 +12,8 @@ public class Game : MonoBehaviour
     public EnemyController enemyPrototype;
     public StartButton startButton;
     [SerializeField]
+    private Text wallText;
+    [SerializeField]
     private Text scoreText;
     [SerializeField]
     private Text scoreMaxText;
@@ -37,6 +39,7 @@ public class Game : MonoBehaviour
         {
             score += Time.deltaTime;
         }
+        wallText.text = "x" + (PlayingFieldController.maxWalls - PlayingFieldController.currentWalls);
 
         updateIngameUI();
     }
