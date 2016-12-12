@@ -90,6 +90,11 @@ public class Game : MonoBehaviour
         if (score > scoreMax)
         {
             PlayerPrefs.SetFloat("Highscore_" + FindObjectOfType<LevelGenerator>().selectedLevel, score);
+            if (score > FindObjectOfType<LevelGenerator>().selectedLevelTimeWin)
+            {
+                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("Win!", 5);
+                Resources.FindObjectsOfTypeAll<LevelSelection>().NextLevel();
+            }
             updateHighscore();
         }
         ResetVolumes();

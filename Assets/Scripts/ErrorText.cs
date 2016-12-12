@@ -21,6 +21,7 @@ public class ErrorText : MonoBehaviour {
         if (timeLeft < 0.0f)
         {
             gameObject.SetActive(false);
+            errorTextField.GetComponent<Renderer>().material.color = new Color(0.5f, 0, 0);
         }
 	}
 
@@ -34,5 +35,11 @@ public class ErrorText : MonoBehaviour {
         errorTextField.text = message;
         timeLeft = seconds;
         gameObject.SetActive(true);
+    }
+
+    public void DisplaySuccess(string message, float seconds)
+    {
+        errorTextField.GetComponent<Text>().color = new Color(0,0.5f,0);
+        DisplayError(message, seconds);
     }
 }

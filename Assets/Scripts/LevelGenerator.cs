@@ -10,6 +10,7 @@ public class LevelGenerator : MonoBehaviour
     public float zSize = 5;
 
     public int selectedLevel = 1;
+    public float selectedLevelTimeWin = 10f;
 
     private PlayingFieldController playingFieldController;
     private BuffController buffConftroller;

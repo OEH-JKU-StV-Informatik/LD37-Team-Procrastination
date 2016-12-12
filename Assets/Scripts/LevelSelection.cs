@@ -20,7 +20,7 @@ public class LevelSelection : MonoBehaviour {
     void UpdateLevelText()
     {
         levelText.text = levelGenerator.selectedLevel.ToString();
-        FindObjectOfType<Game>().initIngameUI();
+        FindObjectOfType<Game>().initIngameUI();//update highscore and reset timer
     }
 
     public void NextLevel()
