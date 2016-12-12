@@ -53,6 +53,8 @@ public class LevelGenerator : MonoBehaviour
         switch (levelId)
         {
             case 1:
+                PlayingFieldController.maxWalls = 10;
+                PlayingFieldController.currentWalls = 0;
                 playingFieldController.PlaceWall(GetScaledVector(0, 0), PlayingFieldController.Direction.zplus);
                 playingFieldController.PlaceWall(GetScaledVector(1, 1), PlayingFieldController.Direction.xplus);
                 playingFieldController.PlaceWall(GetScaledVector(1, 1), PlayingFieldController.Direction.zplus);
@@ -61,6 +63,8 @@ public class LevelGenerator : MonoBehaviour
                 buffConftroller.placeBuffTrigger(GetScaledVector(3, 3), buffConftroller.slowBuffPrototype);
                 break;
             case 2:
+                PlayingFieldController.maxWalls = 10;
+                PlayingFieldController.currentWalls = 0;
                 playingFieldController.PlaceWall(GetScaledVector(3, 2), PlayingFieldController.Direction.xplus);
                 playingFieldController.PlaceWall(GetScaledVector(3, 3), PlayingFieldController.Direction.xplus);
                 playingFieldController.PlaceWall(GetScaledVector(1, 2), PlayingFieldController.Direction.xplus);
@@ -69,6 +73,8 @@ public class LevelGenerator : MonoBehaviour
                 buffConftroller.placeBuffTrigger(GetScaledVector(3, 4), buffConftroller.slowBuffPrototype);
                 break;
             case 3:
+                PlayingFieldController.maxWalls = 10;
+                PlayingFieldController.currentWalls = 0;
                 playingFieldController.PlaceWall(GetScaledVector(3, 2), PlayingFieldController.Direction.xplus);
                 playingFieldController.PlaceWall(GetScaledVector(1, 2), PlayingFieldController.Direction.xplus);
                 playingFieldController.PlaceWall(GetScaledVector(1, 1), PlayingFieldController.Direction.xplus);

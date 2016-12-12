@@ -59,63 +59,86 @@ public class CornerHighlightController : MouseUIObject
         if (dragging && Input.GetMouseButtonUp(0))
         {
             Debug.Log("Stop Dragging");
-            if (selected != this && validWall)
+            if (selected != this && (validWall || validLongWall))
             {
-                Debug.Log("Place New Wall " + selected + "-" + newWall);
-                newWall.transform.LookAt(selected.transform.position);
-                newWall.transform.localScale = draggableWallScale;
 
-                // recalculate pathing
-                FindObjectOfType<AstarPath>().Scan();
-                if (!playingFieldController.IsValidLevel())
+                if (validWall)
                 {
-                    Destroy(newWall);
-                    FindObjectOfType<AstarPath>().Scan();
-                    errorText.DisplayError("Path to the exit cannot be fully obstructed");
+                    if (PlayingFieldController.maxWalls - PlayingFieldController.currentWalls > 0)
+                    {
+                        Debug.Log("Place New Wall " + selected + "-" + newWall);
+                        newWall.transform.LookAt(selected.transform.position);
+                        newWall.transform.localScale = draggableWallScale;
+                        PlayingFieldController.currentWalls++;
+
+                        // recalculate pathing
+                        FindObjectOfType<AstarPath>().Scan();
+                        if (!playingFieldController.IsValidLevel())
+                        {
+                            PlayingFieldController.currentWalls--;
+                            Destroy(newWall);
+
+                            FindObjectOfType<AstarPath>().Scan();
+                            errorText.DisplayError("Path to the exit cannot be fully obstructed");
+                        }
+                        newWall = null;
+                    }
+                    else
+                    {
+                        errorText.DisplayError("Too Many Walls", 2);
+                        // send to many walls errormessage
+                    }
                 }
-                newWall = null;
-            }
-            else if (selected != this && validLongWall)
-            {
-                int count = Mathf.RoundToInt((selected.transform.position - transform.position).magnitude / playingFieldController.GetStepSize());
-                List<GameObject> newWalls = new List<GameObject>();
-                Destroy(newWall);
-                Debug.Log("Place New Walls " + selected + "-" + newWall + " x" + count);
-
-                for (int i = 0; i < count; i++)
+                else if (validLongWall)
                 {
-                    newWall = Instantiate(draggableWallPrototype);
-                    newWall.transform.position = transform.position; //+i
-                    newWall.transform.LookAt(selected.transform.position);
-                    newWall.transform.localPosition += i * playingFieldController.GetStepSize() * newWall.transform.forward;
-                    newWall.transform.localScale = draggableWallScale;
-                    newWall.GetComponentInChildren<MeshRenderer>().material.color = new Color(1, 1, 0);
-                    newWalls.Add(newWall);
-                }
-
-                // recalculate pathing
-                FindObjectOfType<AstarPath>().Scan();
-                if (!playingFieldController.IsValidLevel())
-                {
-                    foreach (GameObject newWall in newWalls)
+                    int count = Mathf.RoundToInt((selected.transform.position - transform.position).magnitude / playingFieldController.GetStepSize());
+                    if (PlayingFieldController.maxWalls - PlayingFieldController.currentWalls - count >= 0)
+                    {
+                        List<GameObject> newWalls = new List<GameObject>();
                         Destroy(newWall);
+                        newWall = null;
+                        Debug.Log("Place New Walls " + selected + "-" + newWall + " x" + count);
 
-                    FindObjectOfType<AstarPath>().Scan();
-                    errorText.DisplayError("Path to the exit cannot be fully obstructed");
+                        for (int i = 0; i < count; i++)
+                        {
+                            newWall = Instantiate(draggableWallPrototype);
+                            newWall.transform.position = transform.position; //+i
+                            newWall.transform.LookAt(selected.transform.position);
+                            newWall.transform.localPosition += i * playingFieldController.GetStepSize() * newWall.transform.forward;
+                            newWall.transform.localScale = draggableWallScale;
+                            newWall.GetComponentInChildren<MeshRenderer>().material.color = new Color(1, 1, 0);
+                            newWalls.Add(newWall);
+                        }
+                        PlayingFieldController.currentWalls += newWalls.Count;
+
+                        // recalculate pathing
+                        FindObjectOfType<AstarPath>().Scan();
+                        if (!playingFieldController.IsValidLevel())
+                        {
+                            foreach (GameObject newWall in newWalls)
+                                Destroy(newWall);
+
+                            FindObjectOfType<AstarPath>().Scan();
+                            errorText.DisplayError("Path to the exit cannot be fully obstructed");
+                            PlayingFieldController.currentWalls -= newWalls.Count;
+                        }
+                        newWall = null;
+                    }
+                    else
+                    {
+                        errorText.DisplayError("Too Many Walls", 2);
+                        // send to many walls errormessage
+                    }
                 }
-                newWall = null;
             }
-            else
-            {
-                Debug.Log("Discard New Wall");
-                Destroy(newWall);
-            }
+            Debug.Log("Discard New Wall");
+            Destroy(newWall);
             resetSelections();
         }
 
         if (!dragging && mouseOver && Input.GetMouseButtonDown(0))
         {
-            if (playingFieldController.currentWalls < playingFieldController.maxWalls)
+            if (PlayingFieldController.currentWalls < PlayingFieldController.maxWalls)
             {
                 dragging = true;
                 Debug.Log("Start Dragging");
