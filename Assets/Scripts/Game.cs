@@ -20,8 +20,6 @@ public class Game : MonoBehaviour
     private float scoreMax = 0.0f;
     private float maxDistance = 0.0f;
 
-    private bool displayMenu = false;
-
     public float musicFadeTime = 3.0f;
 
     public EnemyController enemy;

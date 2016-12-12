@@ -24,7 +24,7 @@ public class BuffController : MonoBehaviour
     public GameObject placeBuffTrigger(Vector3 position, GameObject buff)
     {
         GameObject newBuffTrigger = Instantiate(buffTriggerPrototype, position, Quaternion.identity, playingField.transform);
-        GameObject newBuff = Instantiate(buff, position, Quaternion.identity, playingField.transform);
+        Instantiate(buff, position, Quaternion.identity, playingField.transform);
         newBuffTrigger.GetComponent<BuffTriggerController>().buff = buff;
         return newBuffTrigger;
     }
