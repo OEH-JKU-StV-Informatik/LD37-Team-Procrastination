@@ -69,8 +69,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1270697826905036}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35000002, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 4299928058850106}
   m_RootOrder: 1
@@ -82,8 +82,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300502729167918}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.2, z: 0.15}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1.5, y: 2, z: 1.5}
   m_Children: []
   m_Father: {fileID: 4299928058850106}
   m_RootOrder: 0
@@ -189,8 +189,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.6, z: 0.3}
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Size: {x: 3, y: 6, z: 3}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!114 &114871056130967282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,9 +204,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draggableWallPrototype: {fileID: 1224593027387322, guid: b240bacf9b772584c9276eada05247fd,
     type: 2}
-  playingField: {fileID: 0}
+  playingFieldController: {fileID: 0}
   animationStep: 0.7
   animationRange: 0.08
+  validWallSize: 1.1
   standard: {fileID: 2100000, guid: f0c38db1a34ea3b42a6d0b1cb334d514, type: 2}
   valid: {fileID: 2100000, guid: 115cddde7a4b5bf45b8100e25aef4744, type: 2}
   invalid: {fileID: 2100000, guid: 39ed69cabf2240d4e8e169c2c2bad0e8, type: 2}

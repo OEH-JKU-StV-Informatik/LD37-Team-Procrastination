@@ -5,14 +5,16 @@ using UnityEngine;
 public class CornerHighlightController : MouseUIObject
 {
     public GameObject draggableWallPrototype;
-    public PlayingFieldController playingField;
+    public PlayingFieldController playingFieldController;
     public float animationStep;
     public float animationRange;
+    public float validWallSize;
 
     public Material standard;
     public Material valid;
     public Material invalid;
 
+    private float absoluteValidWallSize;
     private static CornerHighlightController selected = null;
     private bool animate = false;
     private bool dragging = false;
@@ -27,6 +29,7 @@ public class CornerHighlightController : MouseUIObject
     {
         renderers = GetComponentsInChildren<Renderer>();
         errorText = Resources.FindObjectsOfTypeAll<ErrorText>()[0];
+        absoluteValidWallSize = validWallSize * playingFieldController.GetStepSize();
         SetMaterial(standard);
     }
 
@@ -57,11 +60,11 @@ public class CornerHighlightController : MouseUIObject
             {
                 Debug.Log("Place New Wall " + selected + "-" + newWall);
                 newWall.transform.LookAt(selected.transform.position);
-                newWall.transform.localScale = Vector3.one;
+                newWall.transform.localScale = Vector3.one + Vector3.forward * (playingFieldController.GetStepSize() - 1);
 
                 // recalculate pathing
                 FindObjectOfType<AstarPath>().Scan();
-                if (!playingField.IsValidLevel())
+                if (!playingFieldController.IsValidLevel())
                 {
                     Destroy(newWall);
                     FindObjectOfType<AstarPath>().Scan();
@@ -92,7 +95,7 @@ public class CornerHighlightController : MouseUIObject
             newWall = Instantiate(draggableWallPrototype);
             newWall.transform.position = transform.position;
             newWall.transform.localScale = Vector3.zero;
-            newWall.GetComponentInChildren<MeshRenderer>().material.color = new Color(0, 0, 0.85f);
+            newWall.GetComponentInChildren<MeshRenderer>().material.color = new Color(1, 0, 0);
         }
 
         if (dragging && newWall)
@@ -108,7 +111,7 @@ public class CornerHighlightController : MouseUIObject
 
             if (selected && this != selected)
             {
-                validWall = (selected.transform.position - transform.position).magnitude <= 1.1;
+                validWall = (selected.transform.position - transform.position).magnitude <= absoluteValidWallSize;
                 selected.SetMaterial(validWall ? valid : invalid);
             }
             else

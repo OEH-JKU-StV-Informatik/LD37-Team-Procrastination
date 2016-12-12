@@ -12,7 +12,7 @@ public class PlayingFieldController : MonoBehaviour
     public PathHelper pathHelper;
     private GameObject startField;
     private GameObject endField;
-    private float stepSize = 1.0f;
+    private float stepSize = 10.0f;
 
     public enum Direction
     {
@@ -88,7 +88,7 @@ public class PlayingFieldController : MonoBehaviour
     public GameObject PlaceCornerHighlight(Vector3 position)
     {
         GameObject newHighlight = Instantiate(cornerHighlightPrototype, position, Quaternion.identity, gameObject.transform);
-        newHighlight.GetComponent<CornerHighlightController>().playingField = this;
+        newHighlight.GetComponent<CornerHighlightController>().playingFieldController = this;
         return newHighlight;
     }
 
