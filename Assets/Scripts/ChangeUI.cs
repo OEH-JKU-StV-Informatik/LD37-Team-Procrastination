@@ -9,6 +9,7 @@ public class ChangeUI : MonoBehaviour
     public GameObject menuUI;
     public GameObject mainCamera;
     public GameObject menuCamera;
+    public GameObject wallCamera;
 
     private static bool displayMenu = false;
 
@@ -37,16 +38,9 @@ public class ChangeUI : MonoBehaviour
         }
         displayMenu = !displayMenu;
         menuUI.SetActive(displayMenu);
-        if (displayMenu)
-        {
-            mainCamera.SetActive(!displayMenu);
-            menuCamera.SetActive(displayMenu);
-        }
-        else
-        {
-            menuCamera.SetActive(displayMenu);
-            mainCamera.SetActive(!displayMenu);
-        }
+        mainCamera.SetActive(!displayMenu);
+        wallCamera.SetActive(!displayMenu);
+        menuCamera.SetActive(displayMenu);
     }
 
     public void toggleInGameUI()
