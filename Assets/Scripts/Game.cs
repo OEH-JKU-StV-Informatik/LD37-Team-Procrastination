@@ -94,13 +94,13 @@ public class Game : MonoBehaviour
             if (score > FindObjectOfType<LevelGenerator>().selectedLevelTimeWin)
             {
                 Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("Win!" + Environment.NewLine +
-                                                                              "<size=14>You won the level and set a new highscore</size>", 5);
+                                                                              "<size=14>You won the level and set a new highscore</size>", 4);
                 levelSelector.NextLevel();
             }
             else
             {
                 Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("New Highscore!" + Environment.NewLine +
-                                                                              "<size=14>The level is not yet complete though</size>", 5);
+                                                                              "<size=14>The level is not yet complete though</size>", 4);
             }
             updateHighscore();
         }
