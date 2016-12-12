@@ -591,6 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b62c5bda5c13324c8b2a1e041f9fc4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameLogic: {fileID: 803011806}
 --- !u!4 &448008248
 Transform:
   m_ObjectHideFlags: 0
@@ -3856,8 +3857,6 @@ MonoBehaviour:
     type: 2}
   endFieldMaterial: {fileID: 2100000, guid: 8dfd53b03550c0f48a2e438c60eaefb1, type: 2}
   pathHelper: {fileID: 967356426}
-  maxWalls: 10
-  currentWalls: 0
 --- !u!1 &1893951963
 GameObject:
   m_ObjectHideFlags: 0
