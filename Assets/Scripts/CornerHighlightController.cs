@@ -40,13 +40,13 @@ public class CornerHighlightController : MouseUIObject
     {
         if (mouseOver && mouseEnter)
         {
-            Debug.Log("Mouse Enter");
+            //Debug.Log("Mouse Enter");
             selected = this;
             StartAnimation();
         }
         if (mouseExit)
         {
-            Debug.Log("Mouse Exit");
+            //Debug.Log("Mouse Exit");
             if (selected)
             {
                 selected.SetMaterial(standard);
@@ -58,7 +58,7 @@ public class CornerHighlightController : MouseUIObject
 
         if (dragging && Input.GetMouseButtonUp(0))
         {
-            Debug.Log("Stop Dragging");
+            //Debug.Log("Stop Dragging");
             if (selected != this && (validWall || validLongWall))
             {
 
@@ -66,7 +66,7 @@ public class CornerHighlightController : MouseUIObject
                 {
                     if (PlayingFieldController.maxWalls - PlayingFieldController.currentWalls > 0)
                     {
-                        Debug.Log("Place New Wall " + selected + "-" + newWall);
+                        //Debug.Log("Place New Wall " + selected + "-" + newWall);
                         newWall.transform.LookAt(selected.transform.position);
                         newWall.transform.localScale = draggableWallScale;
                         PlayingFieldController.currentWalls++;
@@ -97,7 +97,7 @@ public class CornerHighlightController : MouseUIObject
                         List<GameObject> newWalls = new List<GameObject>();
                         Destroy(newWall);
                         newWall = null;
-                        Debug.Log("Place New Walls " + selected + "-" + newWall + " x" + count);
+                        //Debug.Log("Place New Walls " + selected + "-" + newWall + " x" + count);
 
                         for (int i = 0; i < count; i++)
                         {
@@ -131,7 +131,7 @@ public class CornerHighlightController : MouseUIObject
                     }
                 }
             }
-            Debug.Log("Discard New Wall");
+            //Debug.Log("Discard New Wall");
             Destroy(newWall);
             resetSelections();
         }
@@ -141,7 +141,7 @@ public class CornerHighlightController : MouseUIObject
             if (PlayingFieldController.currentWalls < PlayingFieldController.maxWalls)
             {
                 dragging = true;
-                Debug.Log("Start Dragging");
+                //Debug.Log("Start Dragging");
             }
             else
             {
@@ -154,7 +154,7 @@ public class CornerHighlightController : MouseUIObject
 
         if (dragging && newWall == null)
         {
-            Debug.Log("Make New Wall");
+            //Debug.Log("Make New Wall");
             newWall = Instantiate(draggableWallPrototype);
             newWall.transform.position = transform.position;
             newWall.transform.localScale = Vector3.zero;
@@ -223,7 +223,7 @@ public class CornerHighlightController : MouseUIObject
     {
         var change = animationDirection * animationStep * Time.deltaTime;
         animationSize += change;
-        transform.localScale = Vector3.one * animationSize;
+        transform.localScale = Vector3.one + (Vector3.up * animationSize) - Vector3.up;
         if (Mathf.Abs(animationSize - 1) > animationRange)
         {
             animationDirection *= -1;
@@ -242,7 +242,7 @@ public class CornerHighlightController : MouseUIObject
         animate = false;
         if (large)
         {
-            transform.localScale = Vector3.one * (1 + animationRange);
+            transform.localScale = Vector3.one + Vector3.up * (1 + animationRange) - Vector3.up;
         }
         else
         {

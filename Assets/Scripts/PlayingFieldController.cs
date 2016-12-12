@@ -11,7 +11,8 @@ public class PlayingFieldController : MonoBehaviour
     public GameObject wallPrototype;
     public GameObject fieldPrototype;
     public GameObject cornerHighlightPrototype;
-    public Material endFieldMaterial;
+    public GameObject endFieldMarkerPrototype;
+    public GameObject startFieldMarkerPrototype;
     public PathHelper pathHelper;
 
     private GameObject startField;
@@ -26,6 +27,8 @@ public class PlayingFieldController : MonoBehaviour
     public void SetStartField(GameObject startField)
     {
         this.startField = startField;
+        GameObject startFieldMarker = Instantiate(startFieldMarkerPrototype);
+        startFieldMarker.transform.position = startField.transform.position;
     }
 
     public Vector3 GetStartPosition()
@@ -46,7 +49,8 @@ public class PlayingFieldController : MonoBehaviour
     public void SetEndField(GameObject endField)
     {
         this.endField = endField;
-        SetFieldMaterial(endField, endFieldMaterial);
+        GameObject endFieldMarker = Instantiate(endFieldMarkerPrototype);
+        endFieldMarker.transform.position = endField.transform.position;
     }
 
     // Enemy needs isEndCondition
