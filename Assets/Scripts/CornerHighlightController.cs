@@ -106,7 +106,7 @@ public class CornerHighlightController : MouseUIObject
                             newWall.transform.LookAt(selected.transform.position);
                             newWall.transform.localPosition += i * playingFieldController.GetStepSize() * newWall.transform.forward;
                             newWall.transform.localScale = draggableWallScale;
-                            newWall.GetComponentInChildren<MeshRenderer>().material.color = new Color(1, 1, 0);
+                            //newWall.GetComponentInChildren<MeshRenderer>().material.color = new Color(1, 1, 0);
                             newWalls.Add(newWall);
                         }
                         PlayingFieldController.currentWalls += newWalls.Count;
@@ -158,7 +158,7 @@ public class CornerHighlightController : MouseUIObject
             newWall = Instantiate(draggableWallPrototype);
             newWall.transform.position = transform.position;
             newWall.transform.localScale = Vector3.zero;
-            newWall.GetComponentInChildren<MeshRenderer>().material.color = new Color(1, 0, 0);
+            //newWall.GetComponentInChildren<MeshRenderer>().material.color = new Color(1, 0, 0);
         }
 
         if (dragging && newWall)

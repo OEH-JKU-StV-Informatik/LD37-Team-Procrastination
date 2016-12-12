@@ -93,6 +93,29 @@ public class LevelGenerator : MonoBehaviour
         FindObjectOfType<AstarPath>().Scan();
     }
 
+    public void generateCorners()
+    {
+        for (int x = 0; x < xSize; x++)
+        {
+            for (int z = 0; z < zSize; z++)
+            {
+                playingFieldController.PlaceCornerHighlight(GetScaledVector(x - 0.5f, z - 0.5f));
+                if (z == zSize - 1)
+                {
+                    playingFieldController.PlaceCornerHighlight(GetScaledVector(x - 0.5f, z + 0.5f));
+                }
+                if (x == xSize - 1)
+                {
+                    playingFieldController.PlaceCornerHighlight(GetScaledVector(x + 0.5f, z - 0.5f));
+                }
+                if (z == zSize - 1 && x == xSize - 1)
+                {
+                    playingFieldController.PlaceCornerHighlight(GetScaledVector(x + 0.5f, z + 0.5f));
+                }
+            }
+        }
+    }
+
     private void generateBaseLevel()
     {
         for (int x = 0; x < xSize; x++)
@@ -128,24 +151,9 @@ public class LevelGenerator : MonoBehaviour
                 {
                     playingFieldController.PlaceWall(GetScaledVector(x, z), PlayingFieldController.Direction.zplus);
                 }
-
-
-                // -- Corner Highlighter
-                playingFieldController.PlaceCornerHighlight(GetScaledVector(x - 0.5f, z - 0.5f));
-                if (z == zSize - 1)
-                {
-                    playingFieldController.PlaceCornerHighlight(GetScaledVector(x - 0.5f, z + 0.5f));
-                }
-                if (x == xSize - 1)
-                {
-                    playingFieldController.PlaceCornerHighlight(GetScaledVector(x + 0.5f, z - 0.5f));
-                }
-                if (z == zSize - 1 && x == xSize - 1)
-                {
-                    playingFieldController.PlaceCornerHighlight(GetScaledVector(x + 0.5f, z + 0.5f));
-                }
             }
         }
+        generateCorners();
     }
 
     private Vector3 GetScaledVector(float x, float z)

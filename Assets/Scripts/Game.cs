@@ -82,14 +82,7 @@ public class Game : MonoBehaviour
 
         foreach (CornerHighlightController corner in FindObjectsOfType<CornerHighlightController>())
         {
-            foreach (Collider collider in corner.GetComponentsInChildren<Collider>())
-            {
-                collider.enabled = false;
-            }
-            foreach (Renderer renderer in corner.GetComponentsInChildren<Renderer>())
-            {
-                renderer.enabled = false;
-            }
+            Destroy(corner.gameObject);
         }
     }
 
@@ -103,17 +96,7 @@ public class Game : MonoBehaviour
         StartCoroutine("FadeOut", runMusic);
         StopCoroutine("FadeIn");
         StartCoroutine("FadeIn", buildMusic);
-        foreach (CornerHighlightController corner in FindObjectsOfType<CornerHighlightController>())
-        {
-            foreach (Collider collider in corner.GetComponentsInChildren<Collider>())
-            {
-                collider.enabled = true;
-            }
-            foreach (Renderer renderer in corner.GetComponentsInChildren<Renderer>())
-            {
-                renderer.enabled = true;
-            }
-        }
+        levelSelector.levelGenerator.generateCorners();
 
         //update UI and Highscore
         if (score > scoreMax)
