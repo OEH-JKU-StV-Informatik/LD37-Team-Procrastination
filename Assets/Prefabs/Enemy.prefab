@@ -214,12 +214,12 @@ MonoBehaviour:
   target: {fileID: 0}
   canSearch: 1
   canMove: 1
-  speed: 2
+  speed: 10
   turningSpeed: 50
-  slowdownDistance: 0.1
-  pickNextWaypointDist: 0.2
-  forwardLook: 1
-  endReachedDistance: 0.2
+  slowdownDistance: 1
+  pickNextWaypointDist: 2
+  forwardLook: 10
+  endReachedDistance: 2
   closestOnPathCheck: 1
 --- !u!114 &114776209854206126
 MonoBehaviour:

@@ -5,19 +5,13 @@ using UnityEngine.UI;
 
 public class ErrorText : MonoBehaviour
 {
-
     public float defaultTextDisplayTime = 5.0f;
     public Text errorTextField;
-    
+    public Color successMessageColor;
+    public Color errorMessageColor;
+
     private float timeLeft = 0.0f;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (timeLeft > 0)
@@ -30,6 +24,14 @@ public class ErrorText : MonoBehaviour
         }
     }
 
+    public void DisplayMessage(string message, float seconds, Color color)
+    {
+        errorTextField.color = color;
+        errorTextField.text = message;
+        timeLeft = seconds;
+        gameObject.SetActive(true);
+    }
+
     public void DisplayError(string message)
     {
         DisplayError(message, defaultTextDisplayTime);
@@ -37,14 +39,11 @@ public class ErrorText : MonoBehaviour
 
     public void DisplayError(string message, float seconds)
     {
-        errorTextField.text = message;
-        timeLeft = seconds;
-        gameObject.SetActive(true);
+        DisplayMessage(message, seconds, errorMessageColor);
     }
 
     public void DisplaySuccess(string message, float seconds)
     {
-        errorTextField.GetComponent<Text>().color = new Color(0,0.5f,0);
-        DisplayError(message, seconds);
+        DisplayMessage(message, seconds, successMessageColor);
     }
 }
