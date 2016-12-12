@@ -9,21 +9,23 @@ public class ChangeUI : MonoBehaviour
     public GameObject menuUI;
     public GameObject mainCamera;
     public GameObject menuCamera;
-    
+
     private static bool displayMenu = false;
 
-	// Use this for initialization
-	void Start () {
-		ingameUI.SetActive(!displayMenu);
+    // Use this for initialization
+    void Start()
+    {
+        ingameUI.SetActive(!displayMenu);
         menuUI.SetActive(displayMenu);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if (Input.GetButtonDown("Cancel"))
-	    {
-	        changeUI();
-	    }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            changeUI();
+        }
     }
 
     public void changeUI()

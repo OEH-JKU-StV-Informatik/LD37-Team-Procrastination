@@ -19,17 +19,20 @@ public class CornerHighlightController : MouseUIObject
     private bool animate = false;
     private bool dragging = false;
     private bool validWall = false;
+    private bool validLongWall = false;
     private float animationDirection = 1;
     private float animationSize = 1;
     private GameObject newWall = null;
     private Renderer[] renderers;
     private ErrorText errorText;
+    private Vector3 draggableWallScale;
 
     void Start()
     {
         renderers = GetComponentsInChildren<Renderer>();
         errorText = Resources.FindObjectsOfTypeAll<ErrorText>()[0];
         absoluteValidWallSize = validWallSize * playingFieldController.GetStepSize();
+        draggableWallScale = Vector3.one + Vector3.forward * (playingFieldController.GetStepSize() - 1);
         SetMaterial(standard);
     }
 
@@ -60,13 +63,43 @@ public class CornerHighlightController : MouseUIObject
             {
                 Debug.Log("Place New Wall " + selected + "-" + newWall);
                 newWall.transform.LookAt(selected.transform.position);
-                newWall.transform.localScale = Vector3.one + Vector3.forward * (playingFieldController.GetStepSize() - 1);
+                newWall.transform.localScale = draggableWallScale;
 
                 // recalculate pathing
                 FindObjectOfType<AstarPath>().Scan();
                 if (!playingFieldController.IsValidLevel())
                 {
                     Destroy(newWall);
+                    FindObjectOfType<AstarPath>().Scan();
+                    errorText.DisplayError("Path to the exit cannot be fully obstructed");
+                }
+                newWall = null;
+            }
+            else if (selected != this && validLongWall)
+            {
+                int count = Mathf.RoundToInt((selected.transform.position - transform.position).magnitude / playingFieldController.GetStepSize());
+                List<GameObject> newWalls = new List<GameObject>();
+                Destroy(newWall);
+                Debug.Log("Place New Walls " + selected + "-" + newWall + " x" + count);
+
+                for (int i = 0; i < count; i++)
+                {
+                    newWall = Instantiate(draggableWallPrototype);
+                    newWall.transform.position = transform.position; //+i
+                    newWall.transform.LookAt(selected.transform.position);
+                    newWall.transform.localPosition += i * playingFieldController.GetStepSize() * newWall.transform.forward;
+                    newWall.transform.localScale = draggableWallScale;
+                    newWall.GetComponentInChildren<MeshRenderer>().material.color = new Color(1, 1, 0);
+                    newWalls.Add(newWall);
+                }
+
+                // recalculate pathing
+                FindObjectOfType<AstarPath>().Scan();
+                if (!playingFieldController.IsValidLevel())
+                {
+                    foreach (GameObject newWall in newWalls)
+                        Destroy(newWall);
+
                     FindObjectOfType<AstarPath>().Scan();
                     errorText.DisplayError("Path to the exit cannot be fully obstructed");
                 }
@@ -112,11 +145,15 @@ public class CornerHighlightController : MouseUIObject
             if (selected && this != selected)
             {
                 validWall = (selected.transform.position - transform.position).magnitude <= absoluteValidWallSize;
-                selected.SetMaterial(validWall ? valid : invalid);
+                validLongWall = (Mathf.Abs(selected.transform.position.x - transform.position.x) < (playingFieldController.GetStepSize() / 10)
+                              || Mathf.Abs(selected.transform.position.z - transform.position.z) < (playingFieldController.GetStepSize() / 10));
+
+                selected.SetMaterial(validWall || validLongWall ? valid : invalid);
             }
             else
             {
                 validWall = false;
+                validLongWall = false;
             }
         }
 
