@@ -15,8 +15,8 @@ This team consists of students of the Johannes Kepler University Linz and FH Sal
 The theme is 'One room'.
 
 The player has to place walls to slow down the enemy trying to cross the room. Our game is inspired by tower defense games.
-![Alt text](http://ludumdare.com/compo/wp-content/compo2//593814/19047-shot0-1481595988.png-eq-900-500.jpg)
-![Alt text](http://ludumdare.com/compo/wp-content/compo2//593814/19047-shot1-1481595988.png-eq-900-500.jpg)
+<img src="http://ludumdare.com/compo/wp-content/compo2//593814/19047-shot0-1481595988.png-eq-900-500.jpg" width="300">
+<img src="http://ludumdare.com/compo/wp-content/compo2//593814/19047-shot1-1481595988.png-eq-900-500.jpg" width="300">
 
 #Story
 Delay the enemy crossing the room.
