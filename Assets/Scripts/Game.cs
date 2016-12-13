@@ -13,7 +13,7 @@ public class Game : MonoBehaviour
     public EnemyController enemyPrototype;
     public StartButton startButton;
     [SerializeField]
-    private Text wallText;
+    private TextMesh wallText;
     [SerializeField]
     private Text scoreText;
     [SerializeField]
@@ -47,7 +47,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-        backgroundLight.AddForce(Random.onUnitSphere);
+        backgroundLight.AddForce(Random.onUnitSphere*100);
         buildVolume = buildMusic.volume;
         runVolume = runMusic.volume;
         initIngameUI();
@@ -127,9 +127,9 @@ public class Game : MonoBehaviour
     private void updateIngameUI()
     {
         scoreText.text = string.Format("{0:0.##}", score);
-        scoreMaxSlider.value = IsGameRunning() ?
-           1 - ((enemy.transform.position - playingField.GetEndField().transform.position).magnitude /
-                maxDistance) : scoreMaxSlider.value;
+        float temp = score/FindObjectOfType<LevelGenerator>().selectedLevelTimeWin;
+        Mathf.Clamp(temp, 0, 1);
+        scoreMaxSlider.value = IsGameRunning() ? temp : scoreMaxSlider.value;
     }
 
     private void updateHighscore()
