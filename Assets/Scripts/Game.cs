@@ -127,9 +127,9 @@ public class Game : MonoBehaviour
     private void updateIngameUI()
     {
         scoreText.text = string.Format("{0:0.##}", score);
-        scoreMaxSlider.value = IsGameRunning() ?
-           1 - ((enemy.transform.position - playingField.GetEndField().transform.position).magnitude /
-                maxDistance) : scoreMaxSlider.value;
+        float temp = score/FindObjectOfType<LevelGenerator>().selectedLevelTimeWin;
+        Mathf.Clamp(temp, 0, 1);
+        scoreMaxSlider.value = IsGameRunning() ? temp : scoreMaxSlider.value;
     }
 
     private void updateHighscore()
