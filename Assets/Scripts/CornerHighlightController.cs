@@ -21,7 +21,7 @@ public class CornerHighlightController : MouseUIObject
     private bool validWall = false;
     private bool validLongWall = false;
     private float animationDirection = 1;
-    private float animationSize = 1;
+    private float animationSize = 0;
     private GameObject newWall = null;
     private Renderer[] renderers;
     private ErrorText errorText;
@@ -228,8 +228,8 @@ public class CornerHighlightController : MouseUIObject
     {
         var change = animationDirection * animationStep * Time.deltaTime;
         animationSize += change;
-        transform.localScale = Vector3.one + (Vector3.up * animationSize) - Vector3.up;
-        if (Mathf.Abs(animationSize - 1) > animationRange)
+        transform.localScale = Vector3.one + (Vector3.up * animationSize);
+        if (Mathf.Abs(animationSize) > animationRange)
         {
             animationDirection *= -1;
         }
@@ -238,7 +238,7 @@ public class CornerHighlightController : MouseUIObject
     private void StartAnimation()
     {
         animationDirection = 1;
-        animationSize = 1;
+        animationSize = 0;
         animate = true;
     }
 
@@ -247,7 +247,7 @@ public class CornerHighlightController : MouseUIObject
         animate = false;
         if (large)
         {
-            transform.localScale = Vector3.one + Vector3.up * (1 + animationRange) - Vector3.up;
+            transform.localScale = Vector3.one + Vector3.up * (animationRange);
         }
         else
         {
