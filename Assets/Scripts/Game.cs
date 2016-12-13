@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
+    public Rigidbody backgroundLight;
     public LevelSelection levelSelector;
     public PlayingFieldController playingField;
     public EnemyController enemyPrototype;
@@ -46,6 +47,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
+        backgroundLight.AddForce(Random.onUnitSphere);
         buildVolume = buildMusic.volume;
         runVolume = runMusic.volume;
         initIngameUI();
@@ -105,13 +107,13 @@ public class Game : MonoBehaviour
             updateHighscore();
             if (score > FindObjectOfType<LevelGenerator>().selectedLevelTimeWin)
             {
-                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("Win!" + Environment.NewLine +
+                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("Win!" + System.Environment.NewLine +
                                                                               "<size=18>You won the level and set a new highscore</size>", 4);
                 levelSelector.NextLevel();
             }
             else
             {
-                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("New Highscore!" + Environment.NewLine +
+                Resources.FindObjectsOfTypeAll<ErrorText>()[0].DisplaySuccess("New Highscore!" + System.Environment.NewLine +
                                                                               "<size=18>The level is not yet complete though</size>", 4);
             }
         }
