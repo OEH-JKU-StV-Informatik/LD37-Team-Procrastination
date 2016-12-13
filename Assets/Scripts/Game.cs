@@ -13,7 +13,7 @@ public class Game : MonoBehaviour
     public EnemyController enemyPrototype;
     public StartButton startButton;
     [SerializeField]
-    private Text wallText;
+    private TextMesh wallText;
     [SerializeField]
     private Text scoreText;
     [SerializeField]
@@ -47,7 +47,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-        backgroundLight.AddForce(Random.onUnitSphere);
+        backgroundLight.AddForce(Random.onUnitSphere*100);
         buildVolume = buildMusic.volume;
         runVolume = runMusic.volume;
         initIngameUI();
