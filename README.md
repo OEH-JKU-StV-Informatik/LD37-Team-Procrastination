@@ -11,21 +11,24 @@ This team consists of students of the Johannes Kepler University Linz and FH Sal
 * https://ldjam.com/users/olard
 
 
-# Theme of the challenge, game idea
+# Game Idea - Make One Room Great Again
 The theme is 'One room'.
 
-Our game is inspired by tower defence games. The player has to slow down a the enemy - a grad student - to finish his studies in time. Therefore, he can place obstacles, e.g. walls and towers, that redirect or slow down the student on the field of knowledge.
-
-Make One Room Great Again
+The player has to place walls to slow down the enemy trying to cross the room. Our game is inspired by tower defense games.
+![Alt text](http://ludumdare.com/compo/wp-content/compo2//593814/19047-shot0-1481595988.png-eq-900-500.jpg)
+![Alt text](http://ludumdare.com/compo/wp-content/compo2//593814/19047-shot1-1481595988.png-eq-900-500.jpg)
 
 #Story
 Delay the enemy crossing the room.
 
 #Controls
-drag left mouse button to build walls
-right-click to delete walls
-escape to display the menu
+* Drag left mouse button to build walls
+* Right-click to delete walls
+* Escape to display the menu
 
 #Licenses
-Music: 
+All our code is licensed with the MIT License
+https://github.com/OEH-JKU-StV-Informatik/LD37-Team-Procrastination/blob/master/LICENSE
+
+Used Works:
 Font: L'Engineer Regular - Ferdie Balderas - CC BY-ND 3.0
