@@ -132,7 +132,12 @@ public class CornerHighlightController : MouseUIObject
                 }
             }
             //Debug.Log("Discard New Wall");
-            Destroy(newWall);
+            resetSelections();
+        }
+
+        if (dragging && Input.GetMouseButtonDown(1))
+        {
+            PlayingFieldController.currentWalls++;
             resetSelections();
         }
 
