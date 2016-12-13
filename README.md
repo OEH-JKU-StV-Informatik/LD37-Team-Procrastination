@@ -11,7 +11,21 @@ This team consists of students of the Johannes Kepler University Linz and FH Sal
 * https://ldjam.com/users/olard
 
 
-# Theme of the challange, game idea
+# Theme of the challenge, game idea
 The theme is 'One room'.
 
 Our game is inspired by tower defence games. The player has to slow down a the enemy - a grad student - to finish his studies in time. Therefore, he can place obstacles, e.g. walls and towers, that redirect or slow down the student on the field of knowledge.
+
+Make One Room Great Again
+
+#Story
+Delay the enemy crossing the room.
+
+#Controls
+drag left mouse button to build walls
+right-click to delete walls
+escape to display the menu
+
+#Licenses
+Music: 
+Font: L'Engineer Regular - Ferdie Balderas - CC BY-ND 3.0
